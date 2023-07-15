@@ -1,0 +1,122 @@
+﻿@using PagedList.Mvc
+@model KMGames.Web.ViewModel.Developers.DeveloperSortVm
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*@if (TempData.Keys.Contains("Success"))
+    {
+        <div class="alert alert-success alert-dismissible fade show w-75 bg-opacity-100" role="alert">
+            @TempData["Success"].ToString()
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    else if (TempData.Keys.Contains("Error"))
+    {
+        <div class="alert alert-danger alert-dismissible fade show w-75 bg-opacity-100" role="alert">
+            @TempData["Error"].ToString()
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }*@
+
+<div class="d-flex justify-content-between w-75">
+    <h2>Developers</h2>
+
+    <a class="btn btn-outline-light bg-secondary bg-opacity-25" href="@Url.Action("Create","Developers")">
+        <i class="fa fa-plus"></i>
+        New
+    </a>
+    @*<p>
+            @Html.ActionLink("New", "Create", null, new { @class = "btn btn-outline-light bg-secondary bg-opacity-25" })
+        </p>*@
+</div>
+
+@using (Html.BeginForm("Index", "Developers", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-auto">
+            Order by:
+        </div>
+        <div class="col-auto">
+            @Html.DropDownListFor(model => Model.SortBy, new
+            SelectList(Model.Sorts, "Value", "Key"), "Select condition", new
+            { @class = "form-select" })
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-sm btn-outline-light btn-secondary bg-opacity-10" type="submit" name="SortBy">
+                <i class="fa fa-sort"></i>
+                Apply
+            </button>
+        </div>
+    </div>
+}
+
+@if (Model.Developers.Any())
+{
+    <table class="table w-75" style="color: #dee2e6">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Developers.FirstOrDefault().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Developers.FirstOrDefault().City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Developers.FirstOrDefault().Country)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (var item in Model.Developers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td align="right">
+                        <a class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-4" href="@Url.Action("Edit","Developers", new { id = item.DeveloperId })">
+                            <i class="fa fa-feather-alt"></i>
+                            Edit
+                        </a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.DeveloperId }, new { @class = "btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3" })*@
+
+                        <a class="btn btn-sm btn-outline-info bg-primary bg-opacity-10" href="@Url.Action("Details","Developers", new { id = item.DeveloperId })">
+                            <i class="fa fa-info"></i>
+                            Details
+                        </a>
+                        @*@Html.ActionLink("Details", "Details", new { id = item.DeveloperId }, new { @class = "btn btn-sm btn-outline-info bg-primary bg-opacity-25" })*@
+
+                        <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10" href="@Url.Action("Delete","Developers", new { id = item.DeveloperId })">
+                            <i class="fa fa-trash-alt"></i>
+                            Delete
+                        </a>
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.DeveloperId }, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-dark d-flex align-items-center w-75" role="alert">
+        There's no developer yet.
+    </div>
+}
+
+Página: @(Model.Developers.PageCount < Model.Developers.PageNumber ? 0 : Model.Developers.PageNumber) de: @Model.Developers.PageCount
+@Html.PagedListPager(Model.Developers, page => Url.Action("Index", new
+{
+    page,
+    pageSize = ViewBag.PageSize,
+    SortBy = Model.SortBy
+}))

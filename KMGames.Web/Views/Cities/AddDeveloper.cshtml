@@ -1,0 +1,62 @@
+﻿@model KMGames.Web.ViewModel.Developers.DeveloperEditVm
+
+@{
+    ViewBag.Title = "AddDeveloper";
+}
+
+<h2>Add developer for</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CityId)
+    @Html.HiddenFor(model => model.CountryId)
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group h5" style="background-color: #1f1f20; color: #dee2e6;">
+            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CountryId, Model.Countries, "Select a country", new { @class = "form-control h3 mt-3", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group h5" style="background-color: #1f1f20; color: #dee2e6;">
+            @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CityId, Model.Cities, "Select a city", new { @class = "form-control h3 mt-3", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 h5" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 mt-3">
+
+                <button class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-1 me-2" type="submit">
+                    <i class="fa fa-check"></i>
+                    Add
+                </button>
+                @*<input type="submit" value="Add" class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-1 me-2" />*@
+
+                <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" href="@Url.Action($"/Details/{Model.CityId}","Cities")">
+                    <i class="fa fa-undo"></i>
+                    Cancel
+                </a>
+                @*@Html.ActionLink("Cancel", $"/Details/{Model.CityId}", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" })*@
+            </div>
+        </div>
+    </div>
+}

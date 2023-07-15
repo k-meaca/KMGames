@@ -1,0 +1,118 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<KMGames.Web.ViewModel.PlayerType.PlayerTypeListVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*@if (TempData.Keys.Contains("Success"))
+    {
+        <div class="alert alert-success alert-dismissible fade show w-75 bg-opacity-100" role="alert">
+            @TempData["Success"].ToString()
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    else if (TempData.Keys.Contains("Error"))
+    {
+        <div class="alert alert-danger alert-dismissible fade show w-75 bg-opacity-100" role="alert">
+            @TempData["Error"].ToString()
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }*@
+
+<div class="d-flex justify-content-between w-75">
+    <h2>Player Types</h2>
+
+    <a class="btn btn-outline-light bg-secondary bg-opacity-25" href="@Url.Action("Create","PlayerTypes")">
+        <i class="fa fa-plus"></i>
+        New
+    </a>
+    @*<p>
+            @Html.ActionLink("New", "Create", null, new { @class = "btn btn-outline-light bg-secondary bg-opacity-25" })
+        </p>*@
+</div>
+
+@using (Html.BeginForm())
+{
+
+    <div class="row mt-3">
+        <div class="col-auto">
+            <label>Number per page:</label>
+        </div>
+        <div class="col-auto">
+            <select name="PageSize" class="form-select">
+                <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") } value="5">5</option>
+                <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") } value="10">10</option>
+                <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") } value="15">15</option>
+                <option @if ((int)ViewBag.PageSize == 20) { @Html.Raw("selected") } value="20">20</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-sm btn-outline-light bg-secondary" type="submit">
+                <i class="fa fa-search"></i>
+                Apply
+            </button>
+        </div>
+    </div>
+}
+
+@if (Model.Any())
+{
+
+    <table class="table w-75" style="color: #dee2e6">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td align="right">
+
+                        <a class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3" href="@Url.Action("Edit","PlayerTypes", new { id = item.PlayerTypeId })">
+                            <i class="fa fa-feather-alt"></i>
+                            Edit
+                        </a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.PlayerTypeId }, new { @class = "btn btn-sm btn-outline-success bg-success bg-opacity-10" })*@
+
+
+                        @*<a class="btn btn-sm btn-outline-info bg-primary bg-opacity-10" href="@Url.Action("Details","PlayerTypes", new { id = item.PlayerTypeId })">
+                                <i class="fa fa-info"></i>
+                                Details
+                            </a>*@
+                        @* @Html.ActionLink("Details", "Details", new { id = item.PlayerTypeId }, new { @class = "btn btn-sm btn-outline-info bg-primary bg-opacity-10" })*@
+
+                        <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10" href="@Url.Action("Delete","PlayerTypes", new { id = item.PlayerTypeId })">
+                            <i class="fa fa-trash-alt"></i>
+                            Delete
+                        </a>
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.PlayerTypeId }, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-dark w-75 d-flex align-items-center" role="alert">
+        There's no type yet.
+    </div>
+}
+
+
+Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de: @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    pageSize = ViewBag.PageSize
+}))

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="background-color: #1f1f20; color: #dee2e6;">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container w-75">
+            @Html.ActionLink("KMGames", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if(User.IsInRole("Admin"))
+                    {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Information
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Countries", new { @area = string.Empty })">Countries</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Cities", new { @area = string.Empty })">Cities</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Categories", new { @area = string.Empty })">Categories</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Developers", new { @area = string.Empty })">Developers</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","PlayerTypes", new { @area = string.Empty })">Player Types</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Games", new { @area = string.Empty })">Games</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Users", new { @area = string.Empty })">Users</a></li>
+                            <li><a class="dropdown-item" href="#">Sales</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Security
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="@Url.Action("Index","RolesAdmin",new {@area="Identity"})">Roles</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","UsersAdmin",new {@area="Identity"})">Users</a></li>
+                        </ul>
+                    </li>
+                    }
+
+                </ul>
+            </div>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+    <div class="container body-content ">
+        @Html.Partial("_Notification")
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

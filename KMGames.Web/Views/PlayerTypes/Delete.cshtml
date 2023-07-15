@@ -1,0 +1,39 @@
+﻿@model KMGames.Web.ViewModel.PlayerType.PlayerTypeListVm
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>You are going to delete this player type:</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color mt-3">
+            <button class="btn btn-sm btn-outline-warning bg-warning bg-opacity-10 col-1 me-2" type="submit">
+                <i class="fa fa-trash-alt"></i>
+                Delete
+            </button>
+            @*<input type="submit" value="Delete" class="btn btn-sm btn-outline-warning  bg-warning  bg-opacity-10 col-1 me-2" />*@
+
+            <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" href="@Url.Action($"Index","PlayerTypes")">
+                <i class="fa fa-undo"></i>
+                Cancel
+            </a>
+            @*@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" })*@
+        </div>
+    }
+</div>

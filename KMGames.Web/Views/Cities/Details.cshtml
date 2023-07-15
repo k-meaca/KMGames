@@ -1,0 +1,88 @@
+﻿@model KMGames.Web.ViewModel.Cities.CityDetailsVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="form-control h3 w-50" style="background-color: #1f1f20; color: #dee2e6; ">
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.City.Country)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.City.Country, new { @class = "form-control h3", @disabled = "disabled" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.Name)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.City.Name, new { @class = "form-control h3", @disabled = "disabled" })
+        </dd>
+
+
+    </dl>
+    <a class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 me-2" href="@Url.Action("AddDeveloper","Cities",new { cityId = Model.City.CityId })">
+        <i class="fa fa-check"></i>
+        Add Dev
+    </a>
+    @*@Html.ActionLink("Add Dev", "AddDeveloper", new { cityId = Model.City.CityId }, new {@class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 me-2"})*@
+    
+    <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10" href="@Url.Action("Index","Cities")">
+        <i class="fa fa-undo"></i>
+        Go Back
+    </a>
+    @*@Html.ActionLink("Go Back","Index",null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10" })*@
+</div>
+
+
+@if (Model.Developers.Any())
+{
+
+    <table class="table w-75" style="color: #dee2e6">
+
+        <thead>
+            <tr class="w-50">
+                <th>
+                    @Html.DisplayNameFor(model => model.Developers.FirstOrDefault().Name)
+                </th>
+                <th class="w-25" style="text-align:left">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+            @foreach (var item in Model.Developers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td align="left">
+                        <a class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-4" href="@Url.Action("EditDeveloper","Cities",new { developerId = item.DeveloperId, cityId = Model.City.CityId })">
+                            <i class="fa fa-feather-alt"></i>
+                            Edit
+                        </a>
+                        @*@Html.ActionLink("Edit", "EditDeveloper", new { developerId = item.DeveloperId, cityId = Model.City.CityId }, new { @class = "btn btn-sm btn-outline-success bg-success bg-opacity-10 col-5" })*@
+                        
+                        <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10" href="@Url.Action("DeleteDeveloper","Cities",new { developerId = item.DeveloperId, cityId = Model.City.CityId })">
+                            <i class="fa fa-trash-alt"></i>
+                            Delete
+                        </a>
+                        @*@Html.ActionLink("Delete", "DeleteDeveloper", new { developerId = item.DeveloperId, cityId = Model.City.CityId }, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+    <div class="d-flex alert alert-dark align-items-center w-75 " role="alert">
+        There's no developer yet.
+    </div>
+}

@@ -1,0 +1,55 @@
+﻿@model KMGames.Web.ViewModel.Developers.DeveloperListVm
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>You are going to delete this developer</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color mt-3">
+            <button class="btn btn-sm btn-outline-warning bg-warning bg-opacity-10 col-1 me-2" type="submit">
+                <i class="fa fa-trash-alt"></i>
+                Delete
+            </button>
+
+            @*<input type="submit" value="Delete" class="btn btn-sm btn-outline-warning bg-warning bg-opacity-10 col-1 me-2" />*@
+
+            <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" href="@Url.Action($"Index","Developers")">
+                <i class="fa fa-undo"></i>
+                Cancel
+            </a>
+            @*@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" })*@
+        </div>
+    }
+</div>

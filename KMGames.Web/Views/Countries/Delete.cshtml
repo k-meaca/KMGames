@@ -1,0 +1,39 @@
+﻿@model KMGames.Web.ViewModel.Country.CountryListVm
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>You are going to delete this country :</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd class="mt-2">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button class="btn btn-sm btn-outline-warning bg-warning bg-opacity-10 col-1 me-2">
+                <i class="fa fa-trash-alt"></i>
+                Delete
+            </button>
+            @*<input type="submit" value="Delete" class="btn btn-outline-warning bg-opacity-10 bg-warning btn-sm col-1 me-2" />*@
+
+            <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" href="@Url.Action("Index","Countries")">
+                <i class="fa fa-undo"></i>
+                Cancel
+            </a>
+            @*@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-outline-danger bg-opacity-10 bg-danger btn-sm col-1" })*@
+        </div>
+    }
+</div>

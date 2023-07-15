@@ -1,0 +1,47 @@
+﻿@model KMGames.Web.ViewModel.Cities.CityEditVm
+
+@{
+    ViewBag.Title = "DeleteCity";
+}
+
+<h3>You are going to delete this city from: </h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.CountryId, Model.Countries, new { @class = "form-control", @disabled = "disabled" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @disabled = "disabled" })
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color mt-3">
+            <button class="btn btn-sm btn-outline-warning bg-warning bg-opacity-10 col-1 me-2">
+                <i class="fa fa-trash-alt"></i>
+                Delete
+            </button>
+
+            @*<input type="submit" value="Delete" class="btn btn-sm btn-outline-warning bg-warning bg-opacity-10 col-1 me-2" />*@
+
+            <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" href="@Url.Action($"/Details/{Model.CountryId}","Countries")">
+                <i class="fa fa-undo"></i>
+                Cancel
+            </a>
+            @*@Html.ActionLink("Cancel", $"/Details/{Model.CountryId}", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" })*@
+        </div>
+    }
+</div>

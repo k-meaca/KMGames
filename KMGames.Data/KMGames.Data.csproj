@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3BE6B066-90E5-421A-A908-DE58FB70AE07}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KMGames.Data</RootNamespace>
+    <AssemblyName>KMGames.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityTypeConfiguration\CategoryEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\CityEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\CountryEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\DeveloperEntityTypeconfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\GameCategoryEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\GameEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\PlayerGameEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\PlayerTypeEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\SaleDetailEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\SaleEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\UserEntityTypeConfiguration.cs" />
+    <Compile Include="Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Interfaces\ICityRepository.cs" />
+    <Compile Include="Interfaces\ICountryRepository.cs" />
+    <Compile Include="Interfaces\IDeveloperRepository.cs" />
+    <Compile Include="Interfaces\IGameRepository.cs" />
+    <Compile Include="Interfaces\IPlayerTypeRepository.cs" />
+    <Compile Include="Interfaces\ISaleRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="KmGamesDBContext.cs" />
+    <Compile Include="Migrations\202307040244157_InitialCatalog.cs" />
+    <Compile Include="Migrations\202307040244157_InitialCatalog.designer.cs">
+      <DependentUpon>202307040244157_InitialCatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040424053_CreateGamesAndCategoriesWithTheirRelationship.cs" />
+    <Compile Include="Migrations\202307040424053_CreateGamesAndCategoriesWithTheirRelationship.designer.cs">
+      <DependentUpon>202307040424053_CreateGamesAndCategoriesWithTheirRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040430453_ChangingPrimaryKeysOnGameCategories.cs" />
+    <Compile Include="Migrations\202307040430453_ChangingPrimaryKeysOnGameCategories.designer.cs">
+      <DependentUpon>202307040430453_ChangingPrimaryKeysOnGameCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040436140_ChangingPrimaryKeysOnGameCategories2.cs" />
+    <Compile Include="Migrations\202307040436140_ChangingPrimaryKeysOnGameCategories2.designer.cs">
+      <DependentUpon>202307040436140_ChangingPrimaryKeysOnGameCategories2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040441500_ChangingPrimaryKeysOnGameCategories3.cs" />
+    <Compile Include="Migrations\202307040441500_ChangingPrimaryKeysOnGameCategories3.designer.cs">
+      <DependentUpon>202307040441500_ChangingPrimaryKeysOnGameCategories3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040458232_CreateRelationShipBetweenGamesAndCategoriesTables.cs" />
+    <Compile Include="Migrations\202307040458232_CreateRelationShipBetweenGamesAndCategoriesTables.designer.cs">
+      <DependentUpon>202307040458232_CreateRelationShipBetweenGamesAndCategoriesTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040505378_ChangingColumnsRowVersionToTimeStampType.cs" />
+    <Compile Include="Migrations\202307040505378_ChangingColumnsRowVersionToTimeStampType.designer.cs">
+      <DependentUpon>202307040505378_ChangingColumnsRowVersionToTimeStampType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040510480_RemovingRowVersion.cs" />
+    <Compile Include="Migrations\202307040510480_RemovingRowVersion.designer.cs">
+      <DependentUpon>202307040510480_RemovingRowVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040513305_AddingRowVersion.cs" />
+    <Compile Include="Migrations\202307040513305_AddingRowVersion.designer.cs">
+      <DependentUpon>202307040513305_AddingRowVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040543404_CreateDevelopersTableAndItsRelationshipWithGames.cs" />
+    <Compile Include="Migrations\202307040543404_CreateDevelopersTableAndItsRelationshipWithGames.designer.cs">
+      <DependentUpon>202307040543404_CreateDevelopersTableAndItsRelationshipWithGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040558356_CreateCountriesTableAndItsRelationshipWithDevelopers.cs" />
+    <Compile Include="Migrations\202307040558356_CreateCountriesTableAndItsRelationshipWithDevelopers.designer.cs">
+      <DependentUpon>202307040558356_CreateCountriesTableAndItsRelationshipWithDevelopers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040623194_CreatePlayerTypesAndItsRelationshipWithGames.cs" />
+    <Compile Include="Migrations\202307040623194_CreatePlayerTypesAndItsRelationshipWithGames.designer.cs">
+      <DependentUpon>202307040623194_CreatePlayerTypesAndItsRelationshipWithGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040652000_CreateSalesAndItsRelationshipWithGames.cs" />
+    <Compile Include="Migrations\202307040652000_CreateSalesAndItsRelationshipWithGames.designer.cs">
+      <DependentUpon>202307040652000_CreateSalesAndItsRelationshipWithGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040709552_CreateUsersTable.cs" />
+    <Compile Include="Migrations\202307040709552_CreateUsersTable.designer.cs">
+      <DependentUpon>202307040709552_CreateUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040725049_ChangingKeyNameFromCountriesTable.cs" />
+    <Compile Include="Migrations\202307040725049_ChangingKeyNameFromCountriesTable.designer.cs">
+      <DependentUpon>202307040725049_ChangingKeyNameFromCountriesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040736121_ChangingKeyNameFromCountriesTable2.cs" />
+    <Compile Include="Migrations\202307040736121_ChangingKeyNameFromCountriesTable2.designer.cs">
+      <DependentUpon>202307040736121_ChangingKeyNameFromCountriesTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040744137_ChangingKeyNameFromCountriesTable3.cs" />
+    <Compile Include="Migrations\202307040744137_ChangingKeyNameFromCountriesTable3.designer.cs">
+      <DependentUpon>202307040744137_ChangingKeyNameFromCountriesTable3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307071526541_CreateRowVersionAtributeForCountries.cs" />
+    <Compile Include="Migrations\202307071526541_CreateRowVersionAtributeForCountries.designer.cs">
+      <DependentUpon>202307071526541_CreateRowVersionAtributeForCountries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307080907025_ChangingNameOfIdAttributeCategories.cs" />
+    <Compile Include="Migrations\202307080907025_ChangingNameOfIdAttributeCategories.designer.cs">
+      <DependentUpon>202307080907025_ChangingNameOfIdAttributeCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307080926059_ChangingNameOfIdAttributeCategories2.cs" />
+    <Compile Include="Migrations\202307080926059_ChangingNameOfIdAttributeCategories2.designer.cs">
+      <DependentUpon>202307080926059_ChangingNameOfIdAttributeCategories2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307091704421_RemoveAddressAttributeFromDevelopers.cs" />
+    <Compile Include="Migrations\202307091704421_RemoveAddressAttributeFromDevelopers.designer.cs">
+      <DependentUpon>202307091704421_RemoveAddressAttributeFromDevelopers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307091712552_CreateCitiesTable.cs" />
+    <Compile Include="Migrations\202307091712552_CreateCitiesTable.designer.cs">
+      <DependentUpon>202307091712552_CreateCitiesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307100312396_CreateRelationshipsBetweenDevelopersAndCities.cs" />
+    <Compile Include="Migrations\202307100312396_CreateRelationshipsBetweenDevelopersAndCities.designer.cs">
+      <DependentUpon>202307100312396_CreateRelationshipsBetweenDevelopersAndCities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307132213029_RemoveNameIndexOfCities.cs" />
+    <Compile Include="Migrations\202307132213029_RemoveNameIndexOfCities.designer.cs">
+      <DependentUpon>202307132213029_RemoveNameIndexOfCities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307141542027_ChanginUsersTableAttributes.cs" />
+    <Compile Include="Migrations\202307141542027_ChanginUsersTableAttributes.designer.cs">
+      <DependentUpon>202307141542027_ChanginUsersTableAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307141815115_RemoveRelationBetweenUsersAndSales.cs" />
+    <Compile Include="Migrations\202307141815115_RemoveRelationBetweenUsersAndSales.designer.cs">
+      <DependentUpon>202307141815115_RemoveRelationBetweenUsersAndSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307141820399_RestoreRelationBetweenSalesAndUsers.cs" />
+    <Compile Include="Migrations\202307141820399_RestoreRelationBetweenSalesAndUsers.designer.cs">
+      <DependentUpon>202307141820399_RestoreRelationBetweenSalesAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307141836247_AddRowVersionForUser.cs" />
+    <Compile Include="Migrations\202307141836247_AddRowVersionForUser.designer.cs">
+      <DependentUpon>202307141836247_AddRowVersionForUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\CityRepository.cs" />
+    <Compile Include="Repositories\CountryRepository.cs" />
+    <Compile Include="Repositories\DeveloperRepository.cs" />
+    <Compile Include="Repositories\GameRepository.cs" />
+    <Compile Include="Repositories\PlayerTypeRepository.cs" />
+    <Compile Include="Repositories\SaleRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202307040244157_InitialCatalog.resx">
+      <DependentUpon>202307040244157_InitialCatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040424053_CreateGamesAndCategoriesWithTheirRelationship.resx">
+      <DependentUpon>202307040424053_CreateGamesAndCategoriesWithTheirRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040430453_ChangingPrimaryKeysOnGameCategories.resx">
+      <DependentUpon>202307040430453_ChangingPrimaryKeysOnGameCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040436140_ChangingPrimaryKeysOnGameCategories2.resx">
+      <DependentUpon>202307040436140_ChangingPrimaryKeysOnGameCategories2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040441500_ChangingPrimaryKeysOnGameCategories3.resx">
+      <DependentUpon>202307040441500_ChangingPrimaryKeysOnGameCategories3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040458232_CreateRelationShipBetweenGamesAndCategoriesTables.resx">
+      <DependentUpon>202307040458232_CreateRelationShipBetweenGamesAndCategoriesTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040505378_ChangingColumnsRowVersionToTimeStampType.resx">
+      <DependentUpon>202307040505378_ChangingColumnsRowVersionToTimeStampType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040510480_RemovingRowVersion.resx">
+      <DependentUpon>202307040510480_RemovingRowVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040513305_AddingRowVersion.resx">
+      <DependentUpon>202307040513305_AddingRowVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040543404_CreateDevelopersTableAndItsRelationshipWithGames.resx">
+      <DependentUpon>202307040543404_CreateDevelopersTableAndItsRelationshipWithGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040558356_CreateCountriesTableAndItsRelationshipWithDevelopers.resx">
+      <DependentUpon>202307040558356_CreateCountriesTableAndItsRelationshipWithDevelopers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040623194_CreatePlayerTypesAndItsRelationshipWithGames.resx">
+      <DependentUpon>202307040623194_CreatePlayerTypesAndItsRelationshipWithGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040652000_CreateSalesAndItsRelationshipWithGames.resx">
+      <DependentUpon>202307040652000_CreateSalesAndItsRelationshipWithGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040709552_CreateUsersTable.resx">
+      <DependentUpon>202307040709552_CreateUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040725049_ChangingKeyNameFromCountriesTable.resx">
+      <DependentUpon>202307040725049_ChangingKeyNameFromCountriesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040736121_ChangingKeyNameFromCountriesTable2.resx">
+      <DependentUpon>202307040736121_ChangingKeyNameFromCountriesTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040744137_ChangingKeyNameFromCountriesTable3.resx">
+      <DependentUpon>202307040744137_ChangingKeyNameFromCountriesTable3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307071526541_CreateRowVersionAtributeForCountries.resx">
+      <DependentUpon>202307071526541_CreateRowVersionAtributeForCountries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307080907025_ChangingNameOfIdAttributeCategories.resx">
+      <DependentUpon>202307080907025_ChangingNameOfIdAttributeCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307080926059_ChangingNameOfIdAttributeCategories2.resx">
+      <DependentUpon>202307080926059_ChangingNameOfIdAttributeCategories2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307091704421_RemoveAddressAttributeFromDevelopers.resx">
+      <DependentUpon>202307091704421_RemoveAddressAttributeFromDevelopers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307091712552_CreateCitiesTable.resx">
+      <DependentUpon>202307091712552_CreateCitiesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307100312396_CreateRelationshipsBetweenDevelopersAndCities.resx">
+      <DependentUpon>202307100312396_CreateRelationshipsBetweenDevelopersAndCities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307132213029_RemoveNameIndexOfCities.resx">
+      <DependentUpon>202307132213029_RemoveNameIndexOfCities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307141542027_ChanginUsersTableAttributes.resx">
+      <DependentUpon>202307141542027_ChanginUsersTableAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307141815115_RemoveRelationBetweenUsersAndSales.resx">
+      <DependentUpon>202307141815115_RemoveRelationBetweenUsersAndSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307141820399_RestoreRelationBetweenSalesAndUsers.resx">
+      <DependentUpon>202307141820399_RestoreRelationBetweenSalesAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307141836247_AddRowVersionForUser.resx">
+      <DependentUpon>202307141836247_AddRowVersionForUser.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\KMGames.Entities\KMGames.Entities.csproj">
+      <Project>{10cc5456-5359-4f35-bc5e-ad48699b2f86}</Project>
+      <Name>KMGames.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

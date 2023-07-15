@@ -1,0 +1,125 @@
+﻿@model KMGames.Web.ViewModel.Games.GameEditVm
+
+@{
+
+    ViewBag.Title = "EditGame";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.DeveloperId)
+
+    <div class="container form-horizontal w-75">
+        <h2>Edit game for</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="mt-3 text-start align-content-start">
+            <div class="row h5">
+                <div class="col">
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.DeveloperId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.DeveloperId, Model.Developers, "Select a developer", new { @class = "form-control h5 mt-3", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.DeveloperId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.ActualPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ActualPrice, new { htmlAttributes = new { @class = "form-control", } })
+                            @Html.ValidationMessageFor(model => model.ActualPrice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.Release, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div>
+                            @Html.TextBoxFor(model => model.Release, "{0:yyyy-MM-dd}", new
+                            {
+                                @class = "form-control",
+                                @Type = "date"
+                            })
+                            @Html.ValidationMessageFor(model => model.Release, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mt-3 col-lg-7">
+                        @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label" })
+                        <ul class="list-group">
+                            @for (int i = 0; i < Model.Categories.Count; i++)
+                            {
+                                <li class="list-group-item">
+                                    <div class="form-check form-switch">
+                                        @Html.HiddenFor(m => m.Categories[i].CategoryId)
+                                        @Html.HiddenFor(m => m.Categories[i].Category)
+                                        @Html.CheckBoxFor(m => m.Categories[i].Selected, new { @class = "form-check-input", @type = "checkbox", @role = "switch" })
+                                        @Html.LabelFor(m => m.Categories[i].Selected, Model.Categories[i].Category, new { @class = "form-check-label" })
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form-group mt-3 col-lg-7">
+                        @Html.LabelFor(model => model.PlayerTypes, htmlAttributes: new { @class = "control-label" })
+                        <ul class="list-group">
+                            @for (int i = 0; i < Model.PlayerTypes.Count; i++)
+                            {
+                                <li class="list-group-item">
+                                    <div class="form-check form-switch">
+                                        @Html.HiddenFor(m => m.PlayerTypes[i].PlayerTypeId)
+                                        @Html.HiddenFor(m => m.PlayerTypes[i].Type)
+                                        @Html.CheckBoxFor(m => m.PlayerTypes[i].Selected, new { @class = "form-check-input", @type = "checkbox", @role = "switch" })
+                                        @Html.LabelFor(m => m.PlayerTypes[i].Selected, Model.PlayerTypes[i].Type, new { @class = "form-check-label" })
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        @Html.ValidationMessageFor(model => model.PlayerTypes, "", new { @class = "text-danger w-25" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-3">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3 me-2" type="submit">
+                    <i class="fa fa-feather-alt"></i>
+                    Edit
+                </button>
+                @*<input type="submit" value="Edit" class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3 me-2" />*@
+
+                <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" href="@Url.Action($"/Details/{Model.DeveloperId}","Developers")">
+                    <i class="fa fa-undo"></i>
+                    Cancel
+                </a>
+                @*@Html.ActionLink("Cancel", $"/Details/{Model.DeveloperId}", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" })*@
+            </div>
+        </div>
+    </div>
+}

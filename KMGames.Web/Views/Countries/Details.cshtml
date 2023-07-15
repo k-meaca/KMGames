@@ -1,0 +1,79 @@
+﻿@model KMGames.Web.ViewModel.Country.CountryDetailsVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="h2">
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd class="mt-2">
+            @Html.TextBoxFor(model => model.Country.Name, new { @class = "form-control", @disabled = "disabled" })
+        </dd>
+    </dl>
+    <a class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-1 me-2" href="@Url.Action("AddCity","Countries",new { countryId = Model.Country.CountryId })">
+        <i class="fa fa-check"></i>
+        Add City
+    </a>
+    @*@Html.ActionLink("Add City", "AddCity", new { countryId = Model.Country.CountryId }, new { @class = "btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-1 me-2" })*@
+    
+    <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" href="@Url.Action("Index","Countries")">
+        <i class="fa fa-undo"></i>
+        Go Back
+    </a>
+    @*@Html.ActionLink("Go Back", "Index", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" })*@
+</div>
+
+<hr />
+
+@if (Model.Cities.Any())
+{
+
+    <table class="table w-50" style="color: #dee2e6;">
+
+        <thead>
+            <tr>
+                <th class="w-25">
+                    @Html.DisplayNameFor(model => model.Cities.FirstOrDefault().Name)
+                </th>
+                <th class="w-25" style="text-align:left">
+                    Actions 
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+            @foreach (var item in Model.Cities)
+            {
+                <tr>
+                    <td class="w-25">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="w-25" align="left">
+                        <a class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3" href="@Url.Action("EditCity","Countries",new { cityId = item.CityId })">
+                            <i class="fa fa-feather-alt"></i>
+                            Edit
+                        </a>
+                        @*@Html.ActionLink("Edit", "EditCity", new { cityId = item.CityId }, new { @class = "btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3" })*@
+
+                        <a class="btn btn-sm btn-outline-danger bg-opacity-10 bg-danger" href="@Url.Action("DeleteCity","Countries",new { cityId = item.CityId })">
+                            <i class="fa fa-trash-alt"></i>
+                            Delete
+                        </a>
+                        @*@Html.ActionLink("Delete", "DeleteCity", new { cityid = item.CityId }, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+    <div class="d-flex alert alert-dark align-items-center w-75 " role="alert">
+        There's no city yet.
+    </div>
+}

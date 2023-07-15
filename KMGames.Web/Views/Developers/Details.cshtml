@@ -1,0 +1,123 @@
+﻿@model KMGames.Web.ViewModel.Developers.DeveloperDetailVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of</h2>
+
+<hr />
+
+<div class="form-control h3 w-75" style="background-color: #1f1f20; color: #dee2e6;">
+    <div class="row">
+        <div class="col w-25">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Developer.Name)
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(model => model.Developer.Name, new { @class = "form-control", @disabled = "disabled" })
+                </dd>
+            </dl>
+        </div>
+        <div class="col w-25">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Developer.Country)
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(model => model.Developer.Country, new { @class = "form-control", @disabled = "disabled" })
+                </dd>
+            </dl>
+        </div>
+        <div class="col w-25">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Developer.City)
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(model => model.Developer.City, new { @class = "form-control", @disabled = "disabled" })
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div row>
+
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color mt-3">
+            <a class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 me-1" href="@Url.Action("AddGame","Developers",new { developerId = Model.Developer.DeveloperId })">
+                <i class="fa fa-check"></i>
+                Add Game
+            </a>
+            @*@Html.ActionLink("Add Game", "AddGame", new { developerId = Model.Developer.DeveloperId }, new { @class = "btn btn-sm btn-outline-primary bg-primary bg-opacity-10 me-2" })*@
+
+            <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-2" href="@Url.Action($"Index","Developers")">
+                <i class="fa fa-undo"></i>
+                Go Back
+            </a>
+            @*@Html.ActionLink("Go Back", "Index", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10" })*@
+        </div>
+        
+    </div>
+</div>
+@if (Model.Games.Any())
+{
+    <table class="table w-75" style="color: #dee2e6">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Games.FirstOrDefault().Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Games.FirstOrDefault().ActualPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Games.FirstOrDefault().Release)
+                </th>
+                <th style="text-align:right">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (var item in Model.Games)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActualPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Release)
+                    </td>
+                    <td align="right">
+
+                        <a class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3" href="@Url.Action($"EditGame","Developers", new { gameId = item.GameId, developerId = Model.Developer.DeveloperId })">
+                            <i class="fa fa-feather-alt"></i>
+                            Edit
+                        </a>
+                        @*@Html.ActionLink("Edit", "EditGame", new { gameId = item.GameId, developerId = Model.Developer.DeveloperId }, new { @class = "btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3" })*@
+
+                        <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10" href="@Url.Action($"DeleteGame","Developers", new { gameId = item.GameId, developerId = Model.Developer.DeveloperId })">
+                            <i class="fa fa-trash-alt"></i>
+                            Delete
+                        </a>
+                        @*@Html.ActionLink("Delete", "DeleteGame", new { gameId = item.GameId, developerId = Model.Developer.DeveloperId }, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-dark align-items-center d-flex w-75" role="alert">
+        There's no game yet.
+    </div>
+}
