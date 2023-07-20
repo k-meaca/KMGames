@@ -69,6 +69,7 @@ namespace KMGames.Services.Services
                 game.DeveloperId = gameEdit.DeveloperId;
                 game.GameCategories = gameEdit.GameCategories;
                 game.PlayersGame = gameEdit.PlayersGame;
+                game.Image = gameEdit.Image;
 
                 _gameRepository.Edit(game);
                 _unitOfWork.SaveChanges();

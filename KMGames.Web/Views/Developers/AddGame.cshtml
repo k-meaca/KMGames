@@ -6,13 +6,13 @@
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddGame", "Developers", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.DeveloperId)
 
     <div class="container form-horizontal w-75">
-        <h2 >Add game for</h2>
+        <h2>Add game for</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -104,23 +104,27 @@
             </div>
 
         </div>
-            <div class="form-group mt-3">
-                <div class="col-md-offset-2 col-md-10">
+        <div class="mb-lg-5 mt-3">
+            @Html.LabelFor(model => model.imageFile, htmlAttributes: new { @class = "form-label col-4" })
+            @Html.TextBoxFor(modelo => modelo.imageFile, new { @class = "form-control col-12", @type = "file" })
+        </div>
+        <div class="form-group mt-3">
+            <div class="col-md-offset-2 col-md-10">
 
-                    <button class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-2 me-2" type="submit">
-                        <i class="fa fa-check"></i>
-                        Add
-                    </button>
-                    @*<input type="submit" value="Add" class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-3 me-2" />*@
+                <button class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-2 me-2" type="submit">
+                    <i class="fa fa-check"></i>
+                    Add
+                </button>
+                @*<input type="submit" value="Add" class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-3 me-2" />*@
 
-                    <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" href="@Url.Action($"/Details/{Model.DeveloperId}","Developers")">
-                        <i class="fa fa-undo"></i>
-                        Cancel
-                    </a>
-                    @*@Html.ActionLink("Cancel", $"/Details/{Model.DeveloperId}", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" })*@
-                </div>
+                <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" href="@Url.Action($"/Details/{Model.DeveloperId}","Developers")">
+                    <i class="fa fa-undo"></i>
+                    Cancel
+                </a>
+                @*@Html.ActionLink("Cancel", $"/Details/{Model.DeveloperId}", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" })*@
             </div>
+        </div>
 
-        
+
     </div>
 }

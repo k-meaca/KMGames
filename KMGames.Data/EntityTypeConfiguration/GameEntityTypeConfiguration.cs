@@ -22,6 +22,7 @@ namespace KMGames.Data.EntityTypeConfiguration
             Property(g => g.DeveloperId).IsRequired();
             Property(g => g.Release).IsRequired();
             Property(g => g.Description).IsOptional().HasMaxLength(250);
+            Property(g => g.Image).HasMaxLength(int.MaxValue);
             
             HasMany(g => g.GameCategories).
                 WithRequired(gc => gc.Game).

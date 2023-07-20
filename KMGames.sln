@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMGames.Services", "KMGames
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMGames.Web", "KMGames.Web\KMGames.Web.csproj", "{36579F07-A504-432F-9A37-856AA12AE2C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMGames.Utilities", "KMGames.Utilities\KMGames.Utilities.csproj", "{C8C9EAA1-E307-4DD0-AEFA-C99715E285A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{36579F07-A504-432F-9A37-856AA12AE2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36579F07-A504-432F-9A37-856AA12AE2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36579F07-A504-432F-9A37-856AA12AE2C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8C9EAA1-E307-4DD0-AEFA-C99715E285A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8C9EAA1-E307-4DD0-AEFA-C99715E285A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8C9EAA1-E307-4DD0-AEFA-C99715E285A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8C9EAA1-E307-4DD0-AEFA-C99715E285A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -66,7 +66,8 @@ namespace KMGames.Data.Repositories
                                         Title = g.Title,
                                         ActualPrice = g.ActualPrice,
                                         Release = g.Release,
-                                        Developer = g.Developer.Name
+                                        Developer = g.Developer.Name,
+                                        Image = g.Image
                                     })
                                     .ToList();
         }
@@ -81,7 +82,8 @@ namespace KMGames.Data.Repositories
                                         Title = g.Title,
                                         ActualPrice = g.ActualPrice,
                                         Release = g.Release,
-                                        Developer = g.Developer.Name
+                                        Developer = g.Developer.Name,
+                                        Image = g.Image
                                     })
                                     .ToList();
         }

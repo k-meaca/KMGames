@@ -6,123 +6,126 @@
 
 <h2>Add game</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Games", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
 
-<div class="container form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="mt-3 text-start align-content-start">
-        <div class="row">
-            <div class="col">
-                <div class="form-group mt-3">
-                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        <div class="mt-3 text-start align-content-start">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.ActualPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ActualPrice, new { htmlAttributes = new { @class = "form-control", } })
+                            @Html.ValidationMessageFor(model => model.ActualPrice, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
+                <div class="col">
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.Release, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div>
+                            @Html.TextBoxFor(model => model.Release, "{0:yyyy-MM-dd}", new
+                            {
+                                @class = "form-control",
+                                @Type = "date"
+                                //@value = D,
+                                //@min = "2018-06-07T00:00",
+                                //@max = DateTime.Today.ToShortDateString()
+                            })
+                            @Html.ValidationMessageFor(model => model.Release, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-                <div class="form-group mt-3">
-                    @Html.LabelFor(model => model.ActualPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ActualPrice, new { htmlAttributes = new { @class = "form-control", } })
-                        @Html.ValidationMessageFor(model => model.ActualPrice, "", new { @class = "text-danger" })
+                    <div class="form-group mt-3">
+                        @Html.LabelFor(model => model.DeveloperId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.DeveloperId, Model.Developers, "Select a developer", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DeveloperId, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-group mt-3">
-                    @Html.LabelFor(model => model.Release, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.TextBoxFor(model => model.Release, "{0:yyyy-MM-dd}", new
-                        {
-                            @class = "form-control",
-                            @Type = "date"
-                            //@value = D,
-                            //@min = "2018-06-07T00:00",
-                            //@max = DateTime.Today.ToShortDateString()
-                        })
-                        @Html.ValidationMessageFor(model => model.Release, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mt-3 col-lg-7">
+                        @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label" })
+                        <ul class="list-group">
+                            @for (int i = 0; i < Model.Categories.Count; i++)
+                            {
+                                <li class="list-group-item">
+                                    <div class="form-check form-switch">
+                                        @Html.HiddenFor(m => m.Categories[i].CategoryId)
+                                        @Html.HiddenFor(m => m.Categories[i].Category)
+                                        @Html.CheckBoxFor(m => m.Categories[i].Selected, new { @class = "form-check-input", @type = "checkbox", @role = "switch" })
+                                        @Html.LabelFor(m => m.Categories[i].Selected, Model.Categories[i].Category, new { @class = "form-check-label" })
 
-                <div class="form-group mt-3">
-                    @Html.LabelFor(model => model.DeveloperId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.DeveloperId, Model.Developers, "Select a developer", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.DeveloperId, "", new { @class = "text-danger" })
+                                        @*Other solution to probe
+                                            <input type="checkbox" id="item-@Model.Categories[i].Id" name="Items[@i]" value="@Model.Countries[i].Selected" />
+                                            <label for="item-@Model.Categories[i].Id">@Model.Categories[i].Name</label>*@
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form-group mt-3 col-lg-7">
+                        @Html.LabelFor(model => model.PlayerTypes, htmlAttributes: new { @class = "control-label" })
+                        <ul class="list-group">
+                            @for (int i = 0; i < Model.PlayerTypes.Count; i++)
+                            {
+                                <li class="list-group-item">
+                                    <div class="form-check form-switch">
+                                        @Html.HiddenFor(m => m.PlayerTypes[i].PlayerTypeId)
+                                        @Html.HiddenFor(m => m.PlayerTypes[i].Type)
+                                        @Html.CheckBoxFor(m => m.PlayerTypes[i].Selected, new { @class = "form-check-input", @type = "checkbox", @role = "switch" })
+                                        @Html.LabelFor(m => m.PlayerTypes[i].Selected, Model.PlayerTypes[i].Type, new { @class = "form-check-label" })
+
+                                        @*Other solution to probe
+                                            <input type="checkbox" id="item-@Model.PlayerTypes[i].PlayerTypeId" name="Items[@i]" value="@Model.PlayersType[i].Selected" />
+                                            <label for="item-@Model.PlayerTypes[i].Id">@Model.PlayerTypes[i].Type</label>*@
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        @Html.ValidationMessageFor(model => model.PlayerTypes, "", new { @class = "text-danger w-25" })
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="form-group mt-3 col-lg-7">
-                    @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label" })
-                    <ul class="list-group">
-                        @for (int i = 0; i < Model.Categories.Count; i++)
-                        {
-                            <li class="list-group-item">
-                                <div class="form-check form-switch">
-                                    @Html.HiddenFor(m => m.Categories[i].CategoryId)
-                                    @Html.HiddenFor(m => m.Categories[i].Category)
-                                    @Html.CheckBoxFor(m => m.Categories[i].Selected, new { @class = "form-check-input", @type = "checkbox", @role = "switch" })
-                                    @Html.LabelFor(m => m.Categories[i].Selected, Model.Categories[i].Category, new { @class = "form-check-label" })
+        <div class="mb-lg-5 mt-3">
+            @Html.LabelFor(model => model.imageFile, htmlAttributes: new { @class = "form-label col-4" })
+            @Html.TextBoxFor(modelo => modelo.imageFile, new { @class = "form-control col-12", @type = "file" })
+        </div>
+        <div class="mt-3">
+            <button class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-3 me-2" type="submit">
+                <i class="fa fa-check"></i>
+                Add
+            </button>
+            @*<input type="submit" value="Add" class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-3 me-2" />*@
 
-                                    @*Other solution to probe
-                                        <input type="checkbox" id="item-@Model.Categories[i].Id" name="Items[@i]" value="@Model.Countries[i].Selected" />
-                                        <label for="item-@Model.Categories[i].Id">@Model.Categories[i].Name</label>*@
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                    @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
-                </div>
-
-            </div>
-            <div class="col">
-                <div class="form-group mt-3 col-lg-7">
-                    @Html.LabelFor(model => model.PlayerTypes, htmlAttributes: new { @class = "control-label" })
-                    <ul class="list-group">
-                        @for (int i = 0; i < Model.PlayerTypes.Count; i++)
-                        {
-                            <li class="list-group-item">
-                                <div class="form-check form-switch">
-                                    @Html.HiddenFor(m => m.PlayerTypes[i].PlayerTypeId)
-                                    @Html.HiddenFor(m => m.PlayerTypes[i].Type)
-                                    @Html.CheckBoxFor(m => m.PlayerTypes[i].Selected, new { @class = "form-check-input", @type = "checkbox", @role = "switch" })
-                                    @Html.LabelFor(m => m.PlayerTypes[i].Selected, Model.PlayerTypes[i].Type, new { @class = "form-check-label" })
-
-                                    @*Other solution to probe
-                                        <input type="checkbox" id="item-@Model.PlayerTypes[i].PlayerTypeId" name="Items[@i]" value="@Model.PlayersType[i].Selected" />
-                                        <label for="item-@Model.PlayerTypes[i].Id">@Model.PlayerTypes[i].Type</label>*@
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                    @Html.ValidationMessageFor(model => model.PlayerTypes, "", new { @class = "text-danger w-25" })
-                </div>
-            </div>
+            <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" href="@Url.Action($"Index","Games")">
+                <i class="fa fa-undo"></i>
+                Cancel
+            </a>
+            @*@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" })*@
         </div>
 
     </div>
-    <div class="mt-3">
-        <button class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-1 me-2" type="submit">
-            <i class="fa fa-check"></i>
-            Add
-        </button>
-        @*<input type="submit" value="Add" class="btn btn-sm btn-outline-primary bg-primary bg-opacity-10 col-3 me-2" />*@
-
-        <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" href="@Url.Action($"Index","Games")">
-            <i class="fa fa-undo"></i>
-            Cancel
-        </a>
-        @*@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" })*@
-    </div>
-
-</div>
 }

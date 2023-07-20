@@ -6,11 +6,12 @@
 
 <h2>Edit game</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Games", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.GameId)
     @Html.HiddenFor(model => model.RowVersion)
+    @Html.HiddenFor(model => model.Image)
 
     <div class="form-horizontal">
         <hr />
@@ -109,19 +110,23 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="mb-lg-5 mt-3">
+            @Html.LabelFor(model => model.imageFile, htmlAttributes: new { @class = "form-label col-4" })
+            @Html.TextBoxFor(modelo => modelo.imageFile, new { @class = "form-control col-12", @type = "file" })
         </div>
 
         <div class="form-group mt-3">
             <div class="col-md-offset-2 col-md-10">
 
-                <button class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-1 me-2" type="submit">
+                <button class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3 me-2" type="submit">
                     <i class="fa fa-feather-alt"></i>
                     Edit
                 </button>
                 @*<input type="submit" value="Edit" class="btn btn-sm btn-outline-success bg-sucess bg-opacity-10 col-3 me-2" />*@
 
-                <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-1" href="@Url.Action($"Index","Games")">
+                <a class="btn btn-sm btn-outline-danger bg-danger bg-opacity-10 col-3" href="@Url.Action($"Index","Games")">
                     <i class="fa fa-undo"></i>
                     Cancel
                 </a>

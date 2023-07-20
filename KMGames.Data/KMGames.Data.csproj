@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202307141836247_AddRowVersionForUser.designer.cs">
       <DependentUpon>202307141836247_AddRowVersionForUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307191753490_CreateImageAttributeForGame.cs" />
+    <Compile Include="Migrations\202307191753490_CreateImageAttributeForGame.designer.cs">
+      <DependentUpon>202307191753490_CreateImageAttributeForGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307141836247_AddRowVersionForUser.resx">
       <DependentUpon>202307141836247_AddRowVersionForUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307191753490_CreateImageAttributeForGame.resx">
+      <DependentUpon>202307191753490_CreateImageAttributeForGame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

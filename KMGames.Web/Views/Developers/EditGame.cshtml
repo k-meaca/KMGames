@@ -5,14 +5,15 @@
     ViewBag.Title = "EditGame";
 }
 
-
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditGame", "Developers", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.DeveloperId)
+    @Html.HiddenFor(model => model.GameId)
+    @Html.HiddenFor(model => model.RowVersion)
+    @Html.HiddenFor(model => model.Image)
 
-    <div class="container form-horizontal w-75">
+    <div class="container form-group w-75">
         <h2>Edit game for</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -103,10 +104,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-        <div class="form-group mt-3">
+        <div class="mb-lg-5 mt-3">
+            @Html.LabelFor(model => model.imageFile, htmlAttributes: new { @class = "form-label col-4" })
+            @Html.TextBoxFor(modelo => modelo.imageFile, new {  @class="form-control col-12", @type = "file" })
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3 me-2" type="submit">
                     <i class="fa fa-feather-alt"></i>

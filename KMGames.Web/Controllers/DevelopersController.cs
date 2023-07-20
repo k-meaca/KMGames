@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using KMGames.Entities.Entities;
 using KMGames.Services.Interfaces;
+using KMGames.Utilities;
 using KMGames.Web.App_Start;
 using KMGames.Web.ViewModel.Categories;
 using KMGames.Web.ViewModel.Cities;
@@ -11,6 +12,7 @@ using Microsoft.Ajax.Utilities;
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
@@ -355,6 +357,16 @@ namespace KMGames.Web.Controllers
                 game.GameCategories = gameCategories;
                 game.PlayersGame = playersGames;
 
+                if (gameEditVm.imageFile != null)
+                {
+
+                    var extension = Path.GetExtension(gameEditVm.imageFile.FileName);
+                    var fileName = Guid.NewGuid().ToString();
+                    var file = $"{fileName}{extension}";
+                    var response = FileHelper.UploadPhoto(gameEditVm.imageFile, WC.GameImagesFolder, file);
+                    game.Image = file;
+                }
+
                 _gameService.Add(game);
 
                 TempData["Success"] = "SUCCESS: Game added successfully into selected developer.";
@@ -409,10 +421,21 @@ namespace KMGames.Web.Controllers
         public ActionResult DeleteGame(int gameId, int developerId)
         {
             var game = _gameService.GetGame(gameId);
+            try
+            {
+                if (game.Image != null)
+                {
+                    FileHelper.DeletePhoto(WC.GameImagesFolder + game.Image);
+                }
 
-            _gameService.Delete(game);
+                _gameService.Delete(game);
 
-            TempData["Warning"] = "WARNING: Game deleted successfully from this developer.";
+                TempData["Warning"] = "WARNING: Game deleted successfully from this developer.";
+            }
+            catch(Exception ex)
+            {
+                TempData["ERROR"] = $"ERROR: An error ocurred while trying to delete this game.\n{ex.Message}";
+            }
 
             return RedirectToAction($"/Details/{developerId}");
         }
@@ -500,6 +523,20 @@ namespace KMGames.Web.Controllers
 
             try
             {
+                if (gameEditVm.imageFile != null)
+                {
+                    if (gameEditVm.Image != null)
+                    {
+                        FileHelper.DeletePhoto(WC.GameImagesFolder + gameEditVm.Image);
+                    }
+
+                    var extension = Path.GetExtension(gameEditVm.imageFile.FileName);
+                    var fileName = Guid.NewGuid().ToString();
+                    var file = $"{fileName}{extension}";
+                    var response = FileHelper.UploadPhoto(gameEditVm.imageFile, WC.GameImagesFolder, file);
+                    game.Image = file;
+                }
+
                 _gameService.Edit(game);
 
                 TempData["Success"] = "SUCCESS: Game added successfully into selected developer.";

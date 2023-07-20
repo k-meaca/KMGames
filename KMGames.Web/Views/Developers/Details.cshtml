@@ -65,7 +65,7 @@
 </div>
 @if (Model.Games.Any())
 {
-    <table class="table w-75" style="color: #dee2e6">
+    <table class="table w-100" style="color: #dee2e6">
 
         <thead>
             <tr>
@@ -77,6 +77,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Games.FirstOrDefault().Release)
+                </th>
+                <th>
+                   
                 </th>
                 <th style="text-align:right">
                     Actions
@@ -96,9 +99,19 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Release)
                     </td>
+                    <td align="center">
+                        @if(item.Image != null)
+                        {
+                            <img src="@Url.Content(KMGames.Utilities.WC.GameImagesFolder+item.Image)" style="width:260px; height:80px"/>
+                        }
+                        else
+                        {
+                            <img src="@Url.Content(KMGames.Utilities.WC.GameImageNotAvailable)" style="width:160px; height:80px"/>
+                        }
+                    </td>
                     <td align="right">
 
-                        <a class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-3" href="@Url.Action($"EditGame","Developers", new { gameId = item.GameId, developerId = Model.Developer.DeveloperId })">
+                        <a class="btn btn-sm btn-outline-success bg-success bg-opacity-10 col-4" href="@Url.Action($"EditGame","Developers", new { gameId = item.GameId, developerId = Model.Developer.DeveloperId })">
                             <i class="fa fa-feather-alt"></i>
                             Edit
                         </a>

@@ -3,6 +3,7 @@ using KMGames.Data.Migrations;
 using KMGames.Entities.DTOs.PlayerType;
 using KMGames.Entities.Entities;
 using KMGames.Services.Interfaces;
+using KMGames.Utilities;
 using KMGames.Web.App_Start;
 using KMGames.Web.ViewModel.Categories;
 using KMGames.Web.ViewModel.Games;
@@ -12,6 +13,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Mapping;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
@@ -138,6 +140,15 @@ namespace KMGames.Web.Controllers
             
             try 
             {
+                if (gameEditVm.imageFile != null)
+                {
+                    string extension = Path.GetExtension(gameEditVm.imageFile.FileName);
+                    string filename = Guid.NewGuid().ToString();
+                    var file = $"{filename}{extension}";
+                    var response = FileHelper.UploadPhoto(gameEditVm.imageFile, WC.GameImagesFolder, file);
+                    game.Image = file;
+                }
+
                 _gameService.Add(game);
                 TempData["Success"] = "SUCCESS: Game added successfully.";
             }
@@ -224,6 +235,20 @@ namespace KMGames.Web.Controllers
 
             try
             {
+                if(gameEditVm.imageFile != null)
+                {
+                    if (gameEditVm.Image != null)
+                    {
+                        FileHelper.DeletePhoto(WC.GameImagesFolder+gameEditVm.Image);
+                    }
+
+                    var extension = Path.GetExtension(gameEditVm.imageFile.FileName);
+                    var fileName = Guid.NewGuid().ToString();
+                    var file = $"{fileName}{extension}";
+                    var response = FileHelper.UploadPhoto(gameEditVm.imageFile, WC.GameImagesFolder, file);
+                    game.Image = file;
+                }
+
                 _gameService.Edit(game);
 
                 TempData["Success"] = "SUCCESS: Game edited successfully";
@@ -272,6 +297,11 @@ namespace KMGames.Web.Controllers
 
             try
             {
+                if(game.Image != null)
+                {
+                    FileHelper.DeletePhoto(WC.GameImagesFolder + game.Image);
+                }
+
                 _gameService.Delete(game);
 
                 TempData["Warning"] = $"WARNING: {game.Title} deleted successfully";

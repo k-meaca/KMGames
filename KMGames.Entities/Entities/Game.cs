@@ -32,6 +32,9 @@ namespace KMGames.Entities.Entities
 
         public virtual ICollection<SaleDetail> SalesDetails { get; set; }
 
+
+        public string Image { get; set; }
+
         //----------CONSTRUCTOR----------//
 
         public Game()

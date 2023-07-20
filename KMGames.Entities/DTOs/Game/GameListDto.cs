@@ -19,5 +19,7 @@ namespace KMGames.Entities.DTOs.Game
         public DateTime Release { get; set; }
 
         public string Developer { get; set; }
+
+        public string Image { get; set; }
     }
 }

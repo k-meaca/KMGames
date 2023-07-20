@@ -487,6 +487,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -527,6 +528,10 @@
     <ProjectReference Include="..\KMGames.Services\KMGames.Services.csproj">
       <Project>{0843311c-1c61-437e-8bad-308e64debaa8}</Project>
       <Name>KMGames.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KMGames.Utilities\KMGames.Utilities.csproj">
+      <Project>{C8C9EAA1-E307-4DD0-AEFA-C99715E285A0}</Project>
+      <Name>KMGames.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

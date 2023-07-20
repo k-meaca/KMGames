@@ -27,5 +27,7 @@ namespace KMGames.Web.ViewModel.Games
         public string Developer { get; set; }
 
         public byte[] RowVersion { get; set; }
+
+        public string Image { get; set; }
     }
 }

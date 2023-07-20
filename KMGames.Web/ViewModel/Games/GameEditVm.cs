@@ -60,5 +60,11 @@ namespace KMGames.Web.ViewModel.Games
 
         public  ICollection<SaleDetail> SalesDetails { get; set; }
 
+        [DataType(DataType.ImageUrl)]
+        public string Image { get; set; }
+
+        [DisplayName("Image")]
+        public HttpPostedFileBase imageFile { get; set; }
+
     }
 }
