@@ -23,9 +23,10 @@ namespace KMGames.Services.Interfaces
 
         PlayerType GetPlayerType(int id);
 
+        List<PlayerTypeListDto> GetPlayerTypesFrom(int gameId);
+
         List<PlayerTypeCheckDto> GetCheckBoxList();
 
         bool ItsRelated(int id);
-
     }
 }

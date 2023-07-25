@@ -60,9 +60,19 @@ namespace KMGames.Services.Services
             return _categoryRepository.GetCategories();
         }
 
+        public List<CategoryListDto> GetCategoriesFrom(int gameId)
+        {
+            return _categoryRepository.GetCategoriesFrom(gameId);
+        }
+
         public Category GetCategory(int id)
         {
             return _categoryRepository.GetCategory(id);
+        }
+
+        public Category GetCategory(string filter)
+        {
+            return _categoryRepository.GetCategory(filter);
         }
 
         public List<CategoryCheckDto> GetCheckBoxList()

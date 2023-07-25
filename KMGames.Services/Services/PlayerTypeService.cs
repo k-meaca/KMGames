@@ -58,6 +58,11 @@ namespace KMGames.Services.Services
             return _playerTypeRepository.GetPlayerTypes();
         }
 
+        public List<PlayerTypeListDto> GetPlayerTypesFrom(int gameId)
+        {
+            return _playerTypeRepository.GetPlayerTypesFrom(gameId);
+        }
+
         public List<PlayerTypeCheckDto> GetCheckBoxList()
         {
             return _playerTypeRepository.GetCheckBoxList();

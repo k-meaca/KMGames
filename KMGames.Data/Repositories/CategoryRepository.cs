@@ -2,6 +2,7 @@
 using KMGames.Entities.DTOs.Category;
 using KMGames.Entities.Entities;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,9 +58,26 @@ namespace KMGames.Data.Repositories
                               .ToList();
         }
 
+        public List<CategoryListDto> GetCategoriesFrom(int gameId)
+        {
+            return _dbContext.GameCategories.Include(gc => gc.Category)
+                                            .Where(gc => gc.GameId == gameId)
+                                            .Select(gc => new CategoryListDto()
+                                            {
+                                                CategoryId = gc.CategoryId,
+                                                Name = gc.Category.Name,
+                                                RowVersion = gc.Category.RowVersion
+                                            }).ToList();
+        }
+
         public Category GetCategory(int id)
         {
             return _dbContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+        }
+
+        public Category GetCategory(string filter)
+        {
+            return _dbContext.Categories.FirstOrDefault(c => c.Name == filter);
         }
 
         public List<CategoryCheckDto> GetCheckBoxList()

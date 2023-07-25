@@ -24,6 +24,8 @@ namespace KMGames.Services.Interfaces
         List<GameListDto> GetGames(int developerId);
 
         Game GetGame(int id);
+        
+        List<GameListDto> GetGamesByCategory(int categoryId);
 
         bool ItsRelated(int id);
     }

@@ -69,6 +69,18 @@ namespace KMGames.Data.Repositories
             }).ToList();
         }
 
+        public List<PlayerTypeListDto> GetPlayerTypesFrom(int gameId)
+        {
+            return _dbContext.PlayersGames.Include(pg => pg.PlayerType)
+                                          .Where(pg => pg.GameId == gameId)
+                                          .Select(pg => new PlayerTypeListDto()
+                                          {
+                                              PlayerTypeId = pg.PlayerTypeId,
+                                              Type = pg.PlayerType.Type
+                                          })
+                                          .ToList();
+        }
+
         public bool ItsRelated(int id)
         {
             return _dbContext.PlayersGames.Any(pg => pg.PlayerTypeId == id);

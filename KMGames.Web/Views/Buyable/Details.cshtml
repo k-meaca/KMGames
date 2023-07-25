@@ -1,0 +1,92 @@
+﻿@model KMGames.Web.ViewModel.Buyables.BuyableDetailsVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+
+                @if (Model.Game.Image is null)
+                {
+                    <img class="card-img-top mb-5 mb-md-0" src=@Url.Content(KMGames.Utilities.WC.GameImageNotAvailable) alt="..." />
+                }
+                else
+                {
+                    <img class="card-img-top mb-5 mb-md-0" src=@Url.Content(KMGames.Utilities.WC.GameImagesFolder+Model.Game.Image) alt="..." />
+                }
+            </div>
+            <div class="col-md-6">
+                @*<div class="small mb-1">SKU: BST-498</div>*@
+                <h1 class="display-5 fw-bolder">@Html.DisplayName(Model.Game.Title)</h1>
+                <div class="fs-5 mb-3">
+                    @*<span class="text-decoration-line-through">$45.00</span>*@
+                    <span>
+                        @Html.DisplayNameFor(model => model.Game.ActualPrice):
+                        @Html.DisplayFor(model => model.Game.ActualPrice)
+                    </span>
+                    <div>
+                        <div class="hstack">
+                            <div class="me-2">
+                                @Html.DisplayNameFor(model => model.Categories):
+                            </div>
+                            @for (int i = 0; i < Model.Categories.Count; i++)
+                            {
+                                if (i != Model.Categories.Count - 1)
+                                {
+                                    <div class="me-2">
+                                        @Html.DisplayName(Model.Categories[i].Name),
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="me-2">
+                                        @Html.DisplayName(Model.Categories[i].Name)
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="hstack">
+                            <div class="me-2">
+                                @Html.DisplayNameFor(model => model.PlayerTypes):
+                            </div>
+                            @for (int i = 0; i < Model.PlayerTypes.Count; i++)
+                            {
+                                if (i != Model.PlayerTypes.Count - 1)
+                                {
+                                    <div class="me-2">
+                                        @Html.DisplayName(Model.PlayerTypes[i].Type),
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="me-2">
+                                        @Html.DisplayName(Model.PlayerTypes[i].Type)
+                                    </div>
+                                }
+                            }
+                        </div>                            
+                            
+                    </div>
+                </div>
+                <p class="lead">
+                    @Html.DisplayFor(model => model.Game.Description)
+                </p>
+                <div class="d-flex">
+                    @*<input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />*@
+                    <button class="btn btn-sm btn-outline-success bg-opacity-10 bg-success flex-shrink-0 me-3" type="submit">
+                        <i class="bi-cart-fill me-1 fa fa-shopping-cart"></i>
+                        Add to cart
+                    </button>
+                    <a class="btn btn-sm btn-outline-danger bg-opacity-10 bg-danger" href=@Url.Action("Index", "Buyable", new {filter = Model.Filter })>
+                        <i class="fa fa-undo"></i>
+                        Return
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

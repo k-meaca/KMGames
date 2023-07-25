@@ -7,6 +7,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc.Html;
 
 namespace KMGames.Data.Repositories
 {
@@ -86,6 +87,33 @@ namespace KMGames.Data.Repositories
                                         Image = g.Image
                                     })
                                     .ToList();
+        }
+
+        public List<GameListDto> GetGamesByCategory(int? categoryId)
+        {
+            List<GameListDto> games;
+
+            if(categoryId is null)
+            {
+                games = GetGames().ToList();
+            }
+            else
+            {
+                games = _dbContext.Games.Include(g => g.GameCategories)
+                                        .Where(g => g.GameCategories.Any(gc => gc.CategoryId == categoryId.Value))
+                                        .Select(g => new GameListDto
+                                        {
+                                            GameId = g.GameId,
+                                            Title = g.Title,
+                                            ActualPrice = g.ActualPrice,
+                                            Release = g.Release,
+                                            Developer = g.Developer.Name,
+                                            Image = g.Image
+                                        })
+                                        .ToList();
+            }
+
+            return games;
         }
 
         public bool ItsRelated(int id)

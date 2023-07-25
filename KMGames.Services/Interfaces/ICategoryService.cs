@@ -20,8 +20,13 @@ namespace KMGames.Services.Interfaces
         bool Exist(Category category);
 
         ICollection<CategoryListDto> GetCategories();
-
+        
+        List<CategoryListDto> GetCategoriesFrom(int gameId);
+        
         Category GetCategory(int id);
+
+        Category GetCategory(string filter);
+
         List<CategoryCheckDto> GetCheckBoxList();
 
         bool ItsRelated(Category category);

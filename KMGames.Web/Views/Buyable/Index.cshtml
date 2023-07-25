@@ -1,0 +1,72 @@
+﻿@model KMGames.Web.ViewModel.Games.BuyableGameListVm
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (Model.Games.Any())
+{
+
+    <div class="container px-4 px-lg-5 mt-5 ">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-4 justify-content-center">
+            @if (Model.Filter is null)
+            {
+                <h2>All the Games</h2>
+            }
+            else
+            {
+                <h2>@Html.DisplayName(Model.Filter.Name)</h2>
+            }
+        </div>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-4 mt-4 justify-content-center">
+            @foreach (var item in Model.Games)
+            {
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        @*<div class="badge bg-dark position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>*@
+                        @if (item.Image is null)
+                        {
+                            <a href=@Url.Action("Details", "Buyable", new {gameId = item.GameId})>
+                                <img class="card-img-top" src=@Url.Content(KMGames.Utilities.WC.GameImageNotAvailable) alt="..." />
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a href=@Url.Action("Details", "Buyable", new { gameId = item.GameId, filter = Model.Filter == null ? null : Model.Filter.Name })>
+                                <img class="card-img-top" src=@Url.Content(KMGames.Utilities.WC.GameImagesFolder+item.Image) alt="..." />
+                            </a>
+                        }
+                        <div class="card-body p-3" style="background-color: #1f1f20; color: #dee2e6;">
+                            <div class="text-center">
+                                <h5 class="fw-bolder">@Html.DisplayName(item.Title)</h5>
+                                <h6>@Html.DisplayName(item.Developer)</h6>
+                                @*@Html.DisplayNameFor(_ => item.ActualPrice)*@
+                                @*<span class="text-muted text-decoration-line-through">
+                                $8,00
+                                </span>*@
+
+                                <h6>
+                                    @*Discount*@
+                                    @Html.DisplayNameFor(_ => item.ActualPrice)
+                                    @Html.DisplayFor(model => item.ActualPrice)
+                                </h6>
+
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0" style="background-color: #1f1f20; color: #dee2e6;">
+                            <div class="text-center"><a class="btn btn-outline-success bg-success bg-opacity-10 mt-auto" href="#">Add to cart</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div>
+        There's no game for that category yet.
+    </div>
+}

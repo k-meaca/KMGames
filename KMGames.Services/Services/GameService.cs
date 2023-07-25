@@ -101,6 +101,11 @@ namespace KMGames.Services.Services
             return _gameRepository.GetGames(developerId);
         }
 
+        public List<GameListDto> GetGamesByCategory(int categoryId)
+        {
+            return _gameRepository.GetGamesByCategory(categoryId);
+        }
+
         public bool ItsRelated(int id)
         {
             return _gameRepository.ItsRelated(id);

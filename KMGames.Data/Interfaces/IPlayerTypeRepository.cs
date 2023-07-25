@@ -21,6 +21,8 @@ namespace KMGames.Data.Interfaces
 
         ICollection<PlayerTypeListDto> GetPlayerTypes();
 
+        List<PlayerTypeListDto> GetPlayerTypesFrom(int gameId);
+
         PlayerType GetPlayerType(int id);
 
         List<PlayerTypeCheckDto> GetCheckBoxList();

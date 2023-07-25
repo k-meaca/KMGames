@@ -21,7 +21,11 @@ namespace KMGames.Data.Interfaces
 
         ICollection<CategoryListDto> GetCategories();
 
+        List<CategoryListDto> GetCategoriesFrom(int gameId);
+
         Category GetCategory(int id);
+
+        Category GetCategory(string filter);
 
         List<CategoryCheckDto> GetCheckBoxList();
 
