@@ -6,6 +6,8 @@ using KMGames.Entities.DTOs.Game;
 using KMGames.Entities.DTOs.PlayerType;
 using KMGames.Entities.DTOs.User;
 using KMGames.Entities.Entities;
+using KMGames.Web.Models.Cart;
+using KMGames.Web.ViewModel.Cart;
 using KMGames.Web.ViewModel.Categories;
 using KMGames.Web.ViewModel.Cities;
 using KMGames.Web.ViewModel.Country;
@@ -35,6 +37,7 @@ namespace KMGames.Web.Mapping
             LoadGamesMap();
             LoadPlayerTypeMap();
             LoadUsersMap();
+            LoadItemsCartMap();
         }
 
         //----------MAPS----------//
@@ -109,9 +112,14 @@ namespace KMGames.Web.Mapping
                 );
             CreateMap<User, UserListVm>()
                 .ForMember(
-                    dest => dest.Country,
-                    opt => opt.MapFrom(src => src.Country.Name)
+                    dest => dest.City,
+                    opt => opt.MapFrom(src => src.City.Name)
                 );
+        }
+
+        private void LoadItemsCartMap()
+        {
+            CreateMap<ItemCart, ItemCartVm>();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace KMGames.Data.EntityTypeConfiguration
 
             Property(s => s.RowVersion).IsRowVersion();
             Property(s => s.Total).IsOptional();
-            Property(s => s.UserId).IsRequired();
+            //Property(s => s.UserId).IsRequired();
         }
     }
 }

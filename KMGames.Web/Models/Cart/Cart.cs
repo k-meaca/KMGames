@@ -9,20 +9,37 @@ namespace KMGames.Web.Models.Cart
     {
         //----------PROPERTIES----------//
 
-        public List<ItemCart> Items { get; set; }
+        private List<ItemCart> _items { get; set; }
+
+        public string LastCategory { get; set; }
 
         //----------CONSTRUCTOR----------//
 
         public Cart()
         {
-            Items = new List<ItemCart>();
+            _items = new List<ItemCart>();
         }
 
         //----------METHODS----------//
 
         public int Count()
         {
-            return Items.Count;
+            return _items.Count;
         } 
+
+        public void AddGame(ItemCart game)
+        {
+            _items.Add(game);
+        }
+
+        public List<ItemCart> Items()
+        {
+            return _items;
+        }
+
+        public void RemoveGame(int id)
+        {
+            _items.Remove(_items.First(i => i.GameId == id));
+        }
     }
 }

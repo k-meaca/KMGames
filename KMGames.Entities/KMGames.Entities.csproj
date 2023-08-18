@@ -58,10 +58,10 @@
     <Compile Include="Entities\GameCategory.cs" />
     <Compile Include="Entities\PlayerGame.cs" />
     <Compile Include="Entities\PlayerType.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Sale.cs" />
     <Compile Include="Entities\SaleDetail.cs" />
-    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

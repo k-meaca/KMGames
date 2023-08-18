@@ -86,7 +86,7 @@ namespace KMGames.Web.Helpers
 
             var random = new Random();
             var newPassword = string.Format("{0}{1}{2:04}*",
-                user.NickName.Trim().ToUpper().Substring(0, 1),
+                (user.FirstName+user.LastName).Trim().ToUpper().Substring(0, 1),
                 user.Address.Trim().ToLower(),
                 random.Next(10000));
 

@@ -1,4 +1,8 @@
 using System.Data.Entity;
+using System.Data.Entity.Hierarchy;
+using System.Web.Hosting;
+using KMGames.Data.EntityTypeConfiguration;
+using KMGames.Entities.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace KMGames.Web.Models
@@ -21,5 +25,6 @@ namespace KMGames.Web.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

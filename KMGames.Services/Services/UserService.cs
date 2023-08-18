@@ -53,7 +53,7 @@ namespace KMGames.Services.Services
         }
 
 
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
             return _userRepository.GetUser(id);
         }
@@ -63,7 +63,7 @@ namespace KMGames.Services.Services
             return _userRepository.GetUsers();
         }
 
-        public bool ItsRelated(int id)
+        public bool ItsRelated(string id)
         {
             return _userRepository.ItsRelated(id);
         }

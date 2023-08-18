@@ -22,87 +22,87 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class ="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Games
                         </a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <div class="hstack gap-1">
-                                    <div class="dropdown-item bg-transparent">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index","Buyable", new{ @area = string.Empty } )">All the Games</a>
-                                    </div>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <div class="hstack gap-1">
+                                <div class="dropdown-item bg-transparent">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index","Buyable", new{ @area = string.Empty } )">All the Games</a>
                                 </div>
-                                <div class="hstack gap-3 col-3">
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Action", @area = string.Empty })">Action</a>
-                                    </div>
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new { filter = "Adventure", @area = string.Empty })">Adventure</a>
-                                    </div>
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Puzzle", @area = string.Empty })">Puzzle</a>
-                                    </div>
+                            </div>
+                            <div class="hstack gap-3 col-3">
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Action", @area = string.Empty })">Action</a>
                                 </div>
-                                <div class="hstack gap-3 col-3">
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Racing", @area = string.Empty })">Racing</a>
-                                    </div>
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "RPG", @area = string.Empty })">RPG</a>
-                                    </div>
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Shooter", @area = string.Empty })">Shooter</a>
-                                    </div>
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new { filter = "Adventure", @area = string.Empty })">Adventure</a>
                                 </div>
-                                <div class="hstack gap-lg-3 col-3">
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Sports", @area = string.Empty })">Sports</a>
-                                    </div>
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Simulation", @area = string.Empty })">Simulation</a>
-                                    </div>
-                                    <div class="dropdown-item bg-transparent col-1">
-                                        <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Trivia", @area = string.Empty })">Trivia</a>
-                                    </div>
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Puzzle", @area = string.Empty })">Puzzle</a>
                                 </div>
-                            </ul>
+                            </div>
+                            <div class="hstack gap-3 col-3">
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Racing", @area = string.Empty })">Racing</a>
+                                </div>
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "RPG", @area = string.Empty })">RPG</a>
+                                </div>
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Shooter", @area = string.Empty })">Shooter</a>
+                                </div>
+                            </div>
+                            <div class="hstack gap-lg-3 col-3">
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Sports", @area = string.Empty })">Sports</a>
+                                </div>
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Simulation", @area = string.Empty })">Simulation</a>
+                                </div>
+                                <div class="dropdown-item bg-transparent col-1">
+                                    <a class="dropdown-item bg-transparent col-1" href="@Url.Action("Index", "Buyable", new {filter = "Trivia", @area = string.Empty })">Trivia</a>
+                                </div>
+                            </div>
+                        </ul>
                     </li>
 
-                    @if(User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin"))
                     {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Information
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="@Url.Action("Index", "Countries", new { @area = string.Empty })">Countries</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Cities", new { @area = string.Empty })">Cities</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Categories", new { @area = string.Empty })">Categories</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Developers", new { @area = string.Empty })">Developers</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","PlayerTypes", new { @area = string.Empty })">Player Types</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Games", new { @area = string.Empty })">Games</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Users", new { @area = string.Empty })">Users</a></li>
-                            <li><a class="dropdown-item" href="#">Sales</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Security
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="@Url.Action("Index","RolesAdmin",new {@area="Identity"})">Roles</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","UsersAdmin",new {@area="Identity"})">Users</a></li>
-                        </ul>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Information
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Countries", new { @area = string.Empty })">Countries</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","Cities", new { @area = string.Empty })">Cities</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","Categories", new { @area = string.Empty })">Categories</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","Developers", new { @area = string.Empty })">Developers</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","PlayerTypes", new { @area = string.Empty })">Player Types</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","Games", new { @area = string.Empty })">Games</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","Users", new { @area = string.Empty })">Users</a></li>
+                                <li><a class="dropdown-item" href="#">Sales</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Security
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="@Url.Action("Index","RolesAdmin",new {@area="Identity"})">Roles</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","UsersAdmin",new {@area="Identity"})">Users</a></li>
+                            </ul>
+                        </li>
                     }
 
                 </ul>
             </div>
             @Html.Partial("_LoginPartial")
 
-            @if(User.IsInRole("User"))
+            @if (User.IsInRole("User"))
             {
-                @Html.Action("ShowCart","Cart")
+                @Html.Action("ShowCart", "Cart")
             }
         </div>
     </nav>

@@ -9,11 +9,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NickName)
+            @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NickName)
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
         </dd>
 
         <dt>
@@ -42,8 +50,9 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("DeleteUser","Users")) {
         @Html.AntiForgeryToken()
+        @Html.Hidden("id", Model.UserId)
 
         <div class="form-actions no-color">
             <button class="btn btn-sm btn-outline-warning bg-warning bg-opacity-10 me-2 col-1" type="submit">

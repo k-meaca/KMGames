@@ -1,4 +1,8 @@
-﻿using KMGames.Web.Models.Cart;
+﻿using AutoMapper;
+using KMGames.Services.Interfaces;
+using KMGames.Web.App_Start;
+using KMGames.Web.Models.Cart;
+using KMGames.Web.ViewModel.Cart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +16,21 @@ namespace KMGames.Web.Controllers
         //----------PROPERTIES----------//
 
         private Cart _cart;
+
+        private IGameService _gameService;
+        private ISaleService _saleService;
+
+        private IMapper _mapper;
+
+        //----------CONSTRUCTOR----------/
+
+        public CartController(IGameService gameService, ISaleService saleService)
+        {
+            _gameService = gameService;
+            _saleService = saleService;
+
+            _mapper = AutoMapperConfig.Mapper;
+        }
 
         //----------METHODS----------//
 
@@ -44,7 +63,15 @@ namespace KMGames.Web.Controllers
                 return View("EmptyCart");
             }
 
-            return View(_cart);
+            List<ItemCartVm> items = _mapper.Map<List<ItemCartVm>>(_cart.Items());
+
+            CartVm cart = new CartVm()
+            {
+                Items = items,
+                LastCategory = _cart.LastCategory
+            };
+
+            return View(cart);
         }
 
         // GET: Cart
@@ -53,6 +80,56 @@ namespace KMGames.Web.Controllers
             _cart = GetCart();
 
             return PartialView("_ShoppingCart",_cart);
+        }
+
+        public ActionResult AddGame(int? gameId, string category)
+        {
+            if(gameId is null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            var game = _gameService.GetGame(gameId.Value);
+
+            if(game is null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
+            }
+
+            _cart = GetCart();
+
+            ItemCart item = new ItemCart(game);
+
+            _cart.AddGame(item);
+
+            _cart.LastCategory = category;
+
+            Session["cart"] = _cart; 
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult RemoveGame(int? gameId)
+        {
+            if(gameId is null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            _cart = GetCart();
+
+            _cart.RemoveGame(gameId.Value);
+
+            Session["cart"] = _cart;
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult PayCart()
+        {
+            _cart = GetCart();
+
+            throw new NotImplementedException();
         }
     }
 }

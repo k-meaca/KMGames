@@ -211,6 +211,30 @@
     <Compile Include="Migrations\202307191753490_CreateImageAttributeForGame.designer.cs">
       <DependentUpon>202307191753490_CreateImageAttributeForGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202308180023323_ModifyUserProperty.cs" />
+    <Compile Include="Migrations\202308180023323_ModifyUserProperty.designer.cs">
+      <DependentUpon>202308180023323_ModifyUserProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308181319356_ModifyUserProperty2.cs" />
+    <Compile Include="Migrations\202308181319356_ModifyUserProperty2.designer.cs">
+      <DependentUpon>202308181319356_ModifyUserProperty2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308181332397_ModifyUserProperty3.cs" />
+    <Compile Include="Migrations\202308181332397_ModifyUserProperty3.designer.cs">
+      <DependentUpon>202308181332397_ModifyUserProperty3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308181337326_ModifyUserProperty4.cs" />
+    <Compile Include="Migrations\202308181337326_ModifyUserProperty4.designer.cs">
+      <DependentUpon>202308181337326_ModifyUserProperty4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308181344521_ModifyUserProperty5.cs" />
+    <Compile Include="Migrations\202308181344521_ModifyUserProperty5.designer.cs">
+      <DependentUpon>202308181344521_ModifyUserProperty5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308181822453_ModifyUserProperties5.cs" />
+    <Compile Include="Migrations\202308181822453_ModifyUserProperties5.designer.cs">
+      <DependentUpon>202308181822453_ModifyUserProperties5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -314,6 +338,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307191753490_CreateImageAttributeForGame.resx">
       <DependentUpon>202307191753490_CreateImageAttributeForGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308180023323_ModifyUserProperty.resx">
+      <DependentUpon>202308180023323_ModifyUserProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308181319356_ModifyUserProperty2.resx">
+      <DependentUpon>202308181319356_ModifyUserProperty2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308181332397_ModifyUserProperty3.resx">
+      <DependentUpon>202308181332397_ModifyUserProperty3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308181337326_ModifyUserProperty4.resx">
+      <DependentUpon>202308181337326_ModifyUserProperty4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308181344521_ModifyUserProperty5.resx">
+      <DependentUpon>202308181344521_ModifyUserProperty5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308181822453_ModifyUserProperties5.resx">
+      <DependentUpon>202308181822453_ModifyUserProperties5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -1,8 +1,12 @@
+using KMGames.Entities.Entities;
+using KMGames.Services.Interfaces;
+using KMGames.Services.Services;
 using KMGames.Web.Models;
 using KMGames.Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,14 +17,19 @@ namespace KMGames.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public AccountController()
+
+        private IUserService _userService;
+
+        public AccountController(IUserService userService)
         {
+            _userService = userService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+           
         }
 
         private ApplicationUserManager _userManager;
@@ -141,14 +150,26 @@ namespace KMGames.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var userAccount = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(userAccount, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(userAccount.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userAccount.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(userAccount.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
+
+                    var user = new User()
+                    {
+                        UserId = userAccount.Id,
+                        CreationDate = DateTime.Now,
+                        DateOfBirth = DateTime.Now,
+                        CityId = 1,
+                        Email = userAccount.Email
+                    };
+
+                    _userService.Add(user);
+
                     return View("DisplayEmail");
                 }
                 AddErrors(result);

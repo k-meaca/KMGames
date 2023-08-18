@@ -232,6 +232,8 @@
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModel\Buyables\BuyableDetailsVm.cs" />
+    <Compile Include="ViewModel\Cart\CartVm.cs" />
+    <Compile Include="ViewModel\Cart\ItemCartVm.cs" />
     <Compile Include="ViewModel\Cart\ReturnView.cs" />
     <Compile Include="ViewModel\Categories\CategoryCheckVm.cs" />
     <Compile Include="ViewModel\Categories\CategoryEditVm.cs" />
@@ -385,6 +387,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sweetalert2.all.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
@@ -495,6 +498,8 @@
     <Content Include="Views\Buyable\Details.cshtml" />
     <Content Include="Views\Shared\_ShoppingCart.cshtml" />
     <Content Include="Views\Cart\EmptyCart.cshtml" />
+    <Content Include="Views\Shared\_SignUp.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

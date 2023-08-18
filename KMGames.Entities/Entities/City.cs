@@ -20,5 +20,7 @@ namespace KMGames.Entities.Entities
         public byte[] RowVersion { get; set; }
 
         public virtual ICollection<Developer> Developers { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }

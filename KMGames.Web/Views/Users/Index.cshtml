@@ -42,19 +42,28 @@
 
 @if (Model.Any())
 {
-    <table class="table w-75" style="background-color: #1f1f20; color: #dee2e6;">
+    <table class="table w-100" style="background-color: #1f1f20; color: #dee2e6;">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().NickName)
-                </th>                                  
-                <th>                                   
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().DNI)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().CreationDate)
-                </th>                                  
-                <th>                                   
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().City)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().Country)
-                </th>                                  
-                <th>                                   
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
                 </th>
                 <th></th>
@@ -66,10 +75,19 @@
                 <tr>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.NickName)
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DNI)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Country)

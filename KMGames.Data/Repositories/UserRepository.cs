@@ -41,30 +41,33 @@ namespace KMGames.Data.Repositories
 
         public bool Exist(User user)
         {
-            return _dbContext.Users.Any(u => (u.NickName == user.NickName || u.Email == user.Email) && u.UserId != user.UserId);
+            return _dbContext.Users.Any(u => (u.Email == user.Email) && u.UserId != user.UserId);
         }
 
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
-            return _dbContext.Users.Include(c => c.Country).FirstOrDefault(u => u.UserId == id);
+            return _dbContext.Users.FirstOrDefault(u => u.UserId == id);
         }
 
         public ICollection<UserListDto> GetUsers()
         {
-            return _dbContext.Users.Include(c => c.Country)
-                        .Select(u => new UserListDto
-                        {
-                            UserId = u.UserId,
-                            NickName = u.NickName,
-                            CreationDate = u.CreationDate,
-                            Country = u.Country.Name,
-                            Email = u.Email
-                        })
-                        .ToList();
-
+            return _dbContext.Users.Include(c => c.City)
+                                   .Include(c => c.City.Country)
+                                   .Select(u => new UserListDto
+                                   {
+                                        UserId = u.UserId,
+                                        FirstName = u.FirstName,
+                                        LastName = u.LastName,
+                                        DNI = u.DNI,
+                                        Email = u.Email,
+                                        CreationDate = u.CreationDate,
+                                        City = u.City.Name,
+                                        Country = u.City.Country.Name
+                                    })
+                                   .ToList();
         }
 
-        public bool ItsRelated(int id)
+        public bool ItsRelated(string id)
         {
             return _dbContext.Sales.Any(s => s.UserId == id);
         }

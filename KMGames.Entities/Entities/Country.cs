@@ -20,6 +20,6 @@ namespace KMGames.Entities.Entities
 
         public virtual ICollection<Developer> Developers { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<int> Users { get; set; }
     }
 }

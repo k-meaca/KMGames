@@ -21,8 +21,8 @@ namespace KMGames.Services.Interfaces
 
         ICollection<UserListDto> GetUsers();
 
-        User GetUser(int id);
+        User GetUser(string id);
 
-        bool ItsRelated(int id);
+        bool ItsRelated(string id);
     }
 }

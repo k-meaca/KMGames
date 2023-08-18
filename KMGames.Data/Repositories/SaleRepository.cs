@@ -34,7 +34,7 @@ namespace KMGames.Data.Repositories
                                     new SaleListDto()
                                     {
                                         SaleId = s.SaleId,
-                                        User = s.User.NickName,
+                                        User = s.User.LastName + ", " + s.User.FirstName,
                                         Date = s.Date,
                                         Total = s.Total
                                     }

@@ -3,6 +3,7 @@ using KMGames.Entities.Entities;
 using KMGames.Services.Interfaces;
 using KMGames.Web.App_Start;
 using KMGames.Web.Helpers;
+using KMGames.Web.ViewModel.Cities;
 using KMGames.Web.ViewModel.Games;
 using KMGames.Web.ViewModel.Users;
 using Microsoft.Owin.Security.Provider;
@@ -22,16 +23,30 @@ namespace KMGames.Web.Controllers
 
         private readonly IUserService _userService;
         private readonly ICountryService _countryService;
+        private readonly ICityService _cityService;
+
         private readonly IMapper _mapper;
 
         //----------CONSTRUCTOR----------/
 
-        public UsersController(IUserService userService, ICountryService countryService)
+        public UsersController(IUserService userService, ICountryService countryService, ICityService cityService)
         {
             _userService = userService;
             _countryService = countryService;
+            _cityService = cityService;
 
             _mapper = AutoMapperConfig.Mapper;
+        }
+
+        //----------METHODS----------//
+        
+        public JsonResult GetCities(int countryId)
+        {
+            var cities = _cityService.GetCities(countryId);
+
+            var citiesListVm = _mapper.Map<List<CityListVm>>(cities);
+
+            return Json(citiesListVm);
         }
 
         // GET: Users
@@ -53,7 +68,8 @@ namespace KMGames.Web.Controllers
         {
             var userEditVm = new UserEditVm()
             {
-                Countries = _countryService.GetDropDownList()
+                Countries = _countryService.GetDropDownList(),
+                Cities = new List<SelectListItem>()
             };
 
             return View(userEditVm);
@@ -77,6 +93,8 @@ namespace KMGames.Web.Controllers
                 ModelState.AddModelError(string.Empty, "There alredy exist a user with that name or email.");
                 
                 userEditVm.Countries = _countryService.GetDropDownList();
+
+                userEditVm.Cities = _cityService.GetDropDownListByCountry(userEditVm.CountryId);
 
                 return View(userEditVm);
             }
@@ -104,14 +122,14 @@ namespace KMGames.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if(id is null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
 
-            var user = _userService.GetUser(id.Value);
+            var user = _userService.GetUser(id);
 
             if(user is null)
             {
@@ -119,7 +137,7 @@ namespace KMGames.Web.Controllers
 
                 return RedirectToAction("Index");
             }
-            else if (_userService.ItsRelated(id.Value))
+            else if (_userService.ItsRelated(id))
             {
                 TempData["Error"] = "This user is related to some sales. Can not be deleted.";
 
@@ -131,27 +149,27 @@ namespace KMGames.Web.Controllers
             return View(gameListVm);
         }
 
-        [HttpPost,ActionName("Delete")]
+
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteUser(string id)
         {
             var user = _userService.GetUser(id);
 
             _userService.Delete(user);
 
-            TempData["Warning"] = $"WARNING: {user.NickName} was deleted from database.";
+            TempData["Warning"] = $"WARNING: {user.Email} was deleted from database.";
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id is null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
 
-            var user = _userService.GetUser(id.Value);
+            var user = _userService.GetUser(id);
 
            
             if (user is null)
@@ -166,6 +184,8 @@ namespace KMGames.Web.Controllers
             userEditVm.DeprecatedEmail = user.Email;
 
             userEditVm.Countries = _countryService.GetDropDownList();
+
+            userEditVm.Cities = _cityService.GetDropDownListByCountry(userEditVm.CountryId);
 
             return View(userEditVm);
         }
