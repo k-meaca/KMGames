@@ -14,7 +14,7 @@ namespace KMGames.Web.Models.Cart
 
         public string Title { get; set; }
 
-        public decimal SalePrice { get; set; }
+        public decimal ActualPrice { get; set; }
 
         public string Image { get; set; }
 
@@ -26,7 +26,7 @@ namespace KMGames.Web.Models.Cart
         {
             GameId = game.GameId;
             Title = game.Title;
-            SalePrice = game.ActualPrice;
+            ActualPrice = game.ActualPrice;
             Image = game.Image;
             Description = game.Description;
         }

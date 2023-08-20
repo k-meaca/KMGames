@@ -13,5 +13,8 @@ namespace KMGames.Services.Interfaces
         ICollection<SaleListDto> GetSales();
 
         Sale GetSale(int it);
+
+        void PayGames(User user, List<Game> games);
+
     }
 }

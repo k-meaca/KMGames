@@ -17,7 +17,7 @@ namespace KMGames.Web.ViewModel.Cart
 
         [DisplayName("Price")]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public decimal SalePrice { get; set; }
+        public decimal ActualPrice { get; set; }
 
         public string Image { get; set; }
 

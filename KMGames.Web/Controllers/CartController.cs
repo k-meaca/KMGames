@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KMGames.Entities.Entities;
 using KMGames.Services.Interfaces;
 using KMGames.Web.App_Start;
 using KMGames.Web.Models.Cart;
@@ -19,15 +20,17 @@ namespace KMGames.Web.Controllers
 
         private IGameService _gameService;
         private ISaleService _saleService;
+        private IUserService _userService;
 
         private IMapper _mapper;
 
         //----------CONSTRUCTOR----------/
 
-        public CartController(IGameService gameService, ISaleService saleService)
+        public CartController(IGameService gameService, ISaleService saleService, IUserService userService)
         {
             _gameService = gameService;
             _saleService = saleService;
+            _userService = userService;
 
             _mapper = AutoMapperConfig.Mapper;
         }
@@ -129,7 +132,25 @@ namespace KMGames.Web.Controllers
         {
             _cart = GetCart();
 
-            throw new NotImplementedException();
+            var user = _userService.GetUserByEmail(User.Identity.Name);
+
+            var games = _mapper.Map<List<Game>>(_cart.Items());
+
+            try
+            {
+                _saleService.PayGames(user, games);
+
+                _cart.Clear();
+
+                Session["cart"] = _cart;
+                
+                return View();
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+
         }
     }
 }

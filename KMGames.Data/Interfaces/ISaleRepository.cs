@@ -13,5 +13,9 @@ namespace KMGames.Data.Interfaces
         ICollection<SaleListDto> GetSales();
 
         Sale GetSale(int id);
+
+        Sale MakeSale(User user);
+
+        void PayGames(Sale sale, List<Game> games);
     }
 }

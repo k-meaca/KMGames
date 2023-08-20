@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace KMGames.Services.Services
 {
@@ -36,6 +37,27 @@ namespace KMGames.Services.Services
         public ICollection<SaleListDto> GetSales()
         {
             return _saleRepository.GetSales();
+        }
+
+        public void PayGames(User user, List<Game> games)
+        {
+            try
+            {
+                using(var transaction = new TransactionScope())
+                {
+                    var sale = _saleRepository.MakeSale(user);
+
+                    _saleRepository.PayGames(sale, games);
+
+                    _unitOfWork.SaveChanges();
+
+                    transaction.Complete();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

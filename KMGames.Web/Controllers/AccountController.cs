@@ -1,6 +1,7 @@
 using KMGames.Entities.Entities;
 using KMGames.Services.Interfaces;
 using KMGames.Services.Services;
+using KMGames.Web.Helpers;
 using KMGames.Web.Models;
 using KMGames.Web.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -158,6 +159,8 @@ namespace KMGames.Web.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userAccount.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(userAccount.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
+
+                    UserManager.AddToRole(userAccount.Id, "User");
 
                     var user = new User()
                     {

@@ -58,6 +58,11 @@ namespace KMGames.Services.Services
             return _userRepository.GetUser(id);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.GetUserByEmail(email);
+        }
+
         public ICollection<UserListDto> GetUsers()
         {
             return _userRepository.GetUsers();

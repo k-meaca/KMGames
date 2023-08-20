@@ -120,6 +120,7 @@ namespace KMGames.Web.Mapping
         private void LoadItemsCartMap()
         {
             CreateMap<ItemCart, ItemCartVm>();
+            CreateMap<ItemCart, Game>();
         }
     }
 }

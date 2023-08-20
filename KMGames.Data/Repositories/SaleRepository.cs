@@ -41,5 +41,36 @@ namespace KMGames.Data.Repositories
                                 )
                                 .ToList();
         }
+
+        public Sale MakeSale(User user)
+        {
+            Sale sale = new Sale()
+            {
+                UserId = user.UserId,
+                Date = DateTime.Now,
+            };
+
+            _dbContext.Sales.Add(sale);
+
+            return sale;
+        }
+
+        public void PayGames(Sale sale, List<Game> games)
+        {
+
+            foreach(var game in games)
+            {
+                var saleDetails = new SaleDetail()
+                {
+                    SaleId = sale.SaleId,
+                    GameId = game.GameId,
+                    SalePrice = game.ActualPrice
+                };
+
+                _dbContext.SalesDetais.Add(saleDetails);
+            }
+
+            sale.Total = games.Sum(g => g.ActualPrice);
+        }
     }
 }

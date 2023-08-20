@@ -49,6 +49,11 @@ namespace KMGames.Data.Repositories
             return _dbContext.Users.FirstOrDefault(u => u.UserId == id);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _dbContext.Users.FirstOrDefault(u => u.Email == email);
+        }
+
         public ICollection<UserListDto> GetUsers()
         {
             return _dbContext.Users.Include(c => c.City)

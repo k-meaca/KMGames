@@ -23,6 +23,8 @@ namespace KMGames.Data.Interfaces
 
         User GetUser(string id);
 
+        User GetUserByEmail(string email);
+
         bool ItsRelated(string id);
     }
 }

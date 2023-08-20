@@ -32,6 +32,11 @@ namespace KMGames.Web.Models.Cart
             _items.Add(game);
         }
 
+        public void Clear()
+        {
+            _items.Clear();
+        }
+
         public List<ItemCart> Items()
         {
             return _items;
