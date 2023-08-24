@@ -1,0 +1,50 @@
+﻿@model List<KMGames.Web.ViewModel.Sales.CustomerSalesListVm>
+
+@{
+    ViewBag.Title = "SalesCustomer";
+}
+
+<div class="container d-flex">
+    @Html.Partial("_SalesMenu")
+    <div class="w-75 align-items-end">
+
+        <table class="w-100">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().UserEmail)
+                    </th>
+                    <th align="center">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+                    </th>
+                    <th align="center">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().TotalSpent)
+                    </th>
+                    <th align="center">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().PurchasedGames)
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(_ => item.UserEmail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(_ => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(_ => item.TotalSpent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(_ => item.PurchasedGames)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

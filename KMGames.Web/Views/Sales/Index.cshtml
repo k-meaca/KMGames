@@ -1,0 +1,70 @@
+﻿@model List<KMGames.Web.ViewModel.Sales.SaleListVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container d-flex">
+    @Html.Partial("_SalesMenu")
+
+    <div class="w-75 align-items-end">
+
+        <table class="w-100">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().SaleId)
+                    </th>
+                    <th align="center">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Date)
+                    </th>
+                    <th align="center">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().UserEmail)
+                    </th>
+                    <th align="center">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Total)
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(_ => item.SaleId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(_ => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(_ => item.UserEmail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(_ => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(_ => item.Total)
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td class="fw-bold">
+                        Total Sales:
+                    </td>
+                    <td class="fw-bold">
+                        @Model.Count()
+                    </td>
+                    <td class="fw-bold" colspan="2">
+                        Total Amount :
+                    </td>
+                    <td class="fw-bold">
+                        @Model.Sum(s => s.Total).ToString("C")
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

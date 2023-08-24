@@ -4,6 +4,7 @@ using KMGames.Entities.DTOs.City;
 using KMGames.Entities.DTOs.Developer;
 using KMGames.Entities.DTOs.Game;
 using KMGames.Entities.DTOs.PlayerType;
+using KMGames.Entities.DTOs.Sale;
 using KMGames.Entities.DTOs.User;
 using KMGames.Entities.Entities;
 using KMGames.Web.Models.Cart;
@@ -14,6 +15,7 @@ using KMGames.Web.ViewModel.Country;
 using KMGames.Web.ViewModel.Developers;
 using KMGames.Web.ViewModel.Games;
 using KMGames.Web.ViewModel.PlayerType;
+using KMGames.Web.ViewModel.Sales;
 using KMGames.Web.ViewModel.Users;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -36,6 +38,7 @@ namespace KMGames.Web.Mapping
             LoadDevelopersMap();
             LoadGamesMap();
             LoadPlayerTypeMap();
+            LoadSalesMap();
             LoadUsersMap();
             LoadItemsCartMap();
         }
@@ -99,6 +102,12 @@ namespace KMGames.Web.Mapping
             CreateMap<PlayerType, PlayerTypeListVm>();
             CreateMap<PlayerTypeEditVm, PlayerType>().ReverseMap();
             CreateMap<PlayerTypeCheckDto, PlayerTypeCheckVm>();
+        }
+
+        private void LoadSalesMap()
+        {
+            CreateMap<SaleListDto, SaleListVm>();
+            CreateMap<CustomerSalesListDto, CustomerSalesListVm>();
         }
 
         private void LoadUsersMap()

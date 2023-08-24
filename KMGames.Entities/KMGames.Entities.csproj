@@ -48,6 +48,7 @@
     <Compile Include="DTOs\Game\GameListDto.cs" />
     <Compile Include="DTOs\PlayerType\PlayerTypeCheckDto.cs" />
     <Compile Include="DTOs\PlayerType\PlayerTypeListDto.cs" />
+    <Compile Include="DTOs\Sale\CustomerSalesListDto.cs" />
     <Compile Include="DTOs\Sale\SaleListDto.cs" />
     <Compile Include="DTOs\User\UserListDto.cs" />
     <Compile Include="Entities\Category.cs" />

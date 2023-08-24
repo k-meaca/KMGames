@@ -12,6 +12,8 @@ namespace KMGames.Services.Interfaces
     {
         ICollection<SaleListDto> GetSales();
 
+        ICollection<CustomerSalesListDto> GetCustomerSales();
+
         Sale GetSale(int it);
 
         void PayGames(User user, List<Game> games);

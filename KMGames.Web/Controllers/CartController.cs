@@ -143,12 +143,16 @@ namespace KMGames.Web.Controllers
                 _cart.Clear();
 
                 Session["cart"] = _cart;
-                
-                return View();
+
+                TempData["Success"] = "SUCCESS: Payment was sucessful.";
+
+                return View("EmptyCart");
             }
             catch (Exception)
             {
-                return View();
+                TempData["Error"] = "ERROR: Something wrong happened.";
+
+                return View("Index");
             }
 
         }

@@ -213,6 +213,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlayerTypesController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -255,6 +256,8 @@
     <Compile Include="ViewModel\PlayerType\PlayerTypeCheckVm.cs" />
     <Compile Include="ViewModel\PlayerType\PlayerTypeEditVm.cs" />
     <Compile Include="ViewModel\PlayerType\PlayerTypeListVm.cs" />
+    <Compile Include="ViewModel\Sales\CustomerSalesListVm.cs" />
+    <Compile Include="ViewModel\Sales\SaleListVm.cs" />
     <Compile Include="ViewModel\Users\UserEditVm.cs" />
     <Compile Include="ViewModel\Users\UserListVm.cs" />
   </ItemGroup>
@@ -328,6 +331,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -500,6 +504,9 @@
     <Content Include="Views\Cart\EmptyCart.cshtml" />
     <Content Include="Views\Shared\_SignUp.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\Shared\_SalesMenu.cshtml" />
+    <Content Include="Views\Sales\SalesCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

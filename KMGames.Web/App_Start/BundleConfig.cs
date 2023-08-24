@@ -24,7 +24,8 @@ namespace KMGames.Web
                       "~/Scripts/bootstrap.bundle.js",
                       "~/Scripts/toastr.js",
                       "~/Scripts/fontawesome/all.min.js",
-                      "~/Scripts/sweetalert2.all.min.js"));
+                      "~/Scripts/sweetalert2.all.min.js",
+                      "~/Scripts/chart.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

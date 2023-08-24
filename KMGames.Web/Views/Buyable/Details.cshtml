@@ -75,7 +75,7 @@
                     @Html.DisplayFor(model => model.Game.Description)
                 </p>
                 <div class="d-flex">
-                    <div class="card-footer p-4 pt-0 border-top-0" style="background-color: #1f1f20; color: #dee2e6;">
+                    <div class="card-footer border-top-0" style="background-color: #1f1f20; color: #dee2e6;">
                         <div class="text-center">
 
                             @if (User.IsInRole("User"))
@@ -98,11 +98,11 @@
                                 </button>
                             }
                         </div>
-                        <a class="btn btn-sm btn-outline-danger bg-opacity-10 bg-danger" href=@Url.Action("Index", "Buyable", new {filter = Model.Filter })>
-                            <i class="fa fa-undo"></i>
-                            Return
-                        </a>
                     </div>
+                    <a class="btn btn-sm btn-outline-danger bg-opacity-10 bg-danger col-3" href=@Url.Action("Index", "Buyable", new {filter = Model.Filter })>
+                        <i class="fa fa-undo"></i>
+                        Return
+                    </a>
 
                     @*<input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />*@
                     @*@using (Html.BeginForm("AddGame", "Cart", FormMethod.Post))

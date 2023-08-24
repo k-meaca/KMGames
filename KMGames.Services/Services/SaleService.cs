@@ -39,6 +39,11 @@ namespace KMGames.Services.Services
             return _saleRepository.GetSales();
         }
 
+        public ICollection<CustomerSalesListDto> GetCustomerSales()
+        {
+            return _saleRepository.GetCustomerSales();
+        }
+
         public void PayGames(User user, List<Game> games)
         {
             try

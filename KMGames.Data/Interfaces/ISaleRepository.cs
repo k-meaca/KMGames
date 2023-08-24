@@ -12,6 +12,8 @@ namespace KMGames.Data.Interfaces
     {
         ICollection<SaleListDto> GetSales();
 
+        ICollection<CustomerSalesListDto> GetCustomerSales();
+
         Sale GetSale(int id);
 
         Sale MakeSale(User user);

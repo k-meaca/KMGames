@@ -2,10 +2,12 @@
 using KMGames.Entities.DTOs.Sale;
 using KMGames.Entities.Entities;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace KMGames.Data.Repositories
 {
@@ -30,16 +32,40 @@ namespace KMGames.Data.Repositories
 
         public ICollection<SaleListDto> GetSales()
         {
-            return _dbContext.Sales.Select(s =>
-                                    new SaleListDto()
-                                    {
-                                        SaleId = s.SaleId,
-                                        User = s.User.LastName + ", " + s.User.FirstName,
-                                        Date = s.Date,
-                                        Total = s.Total
-                                    }
-                                )
-                                .ToList();
+            return _dbContext.Sales.Include(s => s.User).
+                                    Select(s =>
+                                        new SaleListDto()
+                                        {
+                                            SaleId = s.SaleId,
+                                            UserId = s.User.UserId,
+                                            UserEmail = s.User.Email,
+                                            UserName = s.User.FirstName + " " + s.User.LastName,
+                                            Date = s.Date,
+                                            Total = s.Total
+                                        }
+                                    )
+                                    .ToList();
+        }
+
+        public ICollection<CustomerSalesListDto> GetCustomerSales()
+        {
+            var customerSales = _dbContext.Sales.Include(s => s.User)
+                                   .GroupBy(s => s.User, s=> s.UserId)
+                                   .Select(s => new CustomerSalesListDto()
+                                   {
+                                       UserId = s.Key.UserId,
+                                       UserEmail = s.Key.Email,
+                                       UserName = s.Key.FirstName + " " + s.Key.LastName,
+                                       TotalSpent = s.Key.Sales.Sum(sale => sale.Total),
+                                   })
+                                   .ToList();
+
+            customerSales.ForEach(c =>
+            {
+                c.PurchasedGames = _dbContext.SalesDetais.Include(sd => sd.Sale).Count(sd => sd.Sale.UserId == c.UserId);
+            });
+
+            return customerSales;
         }
 
         public Sale MakeSale(User user)

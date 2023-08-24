@@ -65,15 +65,15 @@
             </tr>
         </tbody>
     </table>
-    <div class="mt-3">
-        <a class="btn bg-opacity-25 btn-outline-success col-2" href="@Url.Action("Index","Buyable", new {filter = Model.LastCategory})">
+    <div class="mt-3  d-flex">
+        <a class="btn bg-opacity-25 btn-outline-success col-2 me-lg-3" href="@Url.Action("Index","Buyable", new {filter = Model.LastCategory})">
             <i class="fa fa-shopping-cart"></i>
             Keep Buying
         </a>
 
-        <form action="@Url.Action("PayCart","Cart")" id="payForm">
+        <form action="@Url.Action("PayCart","Cart")" id="payForm" class="w-75">
 
-            <button class="btn bg-opacity-25 btn-outline-primary col-2" type="submit"
+            <button class="btn bg-opacity-25 btn-outline-primary col-3" type="submit"
                     onclick="return PayConfirmed('@Model.Items.Sum(g => g.ActualPrice).ToString("C")')">
                 <i class="fa fa-dollar-sign"></i>
                 Pay
@@ -116,7 +116,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Pay!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     //Swal.fire(
