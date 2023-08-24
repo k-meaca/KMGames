@@ -85,6 +85,10 @@ namespace KMGames.Services.Services
             return _gameRepository.Exist(game);
         }
 
+        public ICollection<GameListDto> GetBestSeller(int numberOfGames = 3)
+        {
+            return _gameRepository.GetBestSeller(numberOfGames);
+        }
 
         public Game GetGame(int id)
         {

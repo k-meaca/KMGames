@@ -18,6 +18,8 @@ namespace KMGames.Data.Interfaces
 
         bool Exist(Game game);
 
+        ICollection<GameListDto> GetBestSeller(int numberOfGames = 3);
+
         ICollection<GameListDto> GetGames();
         
         List<GameListDto> GetGames(int developerId);

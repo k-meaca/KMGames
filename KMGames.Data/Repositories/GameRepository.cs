@@ -46,6 +46,37 @@ namespace KMGames.Data.Repositories
             return _dbContext.Games.Any(g => g.Title == game.Title && g.GameId != game.GameId);
         }
 
+        public ICollection<GameListDto> GetBestSeller(int numberOfGames = 3)
+        {
+
+            var topIds = _dbContext.SalesDetais.Include(sd => sd.Game)
+                                         .GroupBy(sd => sd.Game, sd => sd.GameId)
+                                         .Select(sd => new { Id = sd.Key.GameId, Total = sd.Count() })
+                                         .OrderByDescending(g => g.Total)
+                                         .Take(numberOfGames)
+                                         .ToList();
+            
+            var bestSeller = new List<GameListDto>();
+
+            topIds.ForEach(id =>
+                {
+                    var game = _dbContext.Games.Include(g => g.Developer).FirstOrDefault(g => g.GameId == id.Id);
+
+                    bestSeller.Add(new GameListDto()
+                    {
+                        GameId = game.GameId,
+                        Title = game.Title,
+                        ActualPrice = game.ActualPrice,
+                        Release = game.Release,
+                        Developer = game.Developer.Name,
+                        Image = game.Image
+                    });
+                }
+            );
+
+            return bestSeller;
+        }
+
         public Game GetGame(int id)
         {
             Game game = _dbContext.Games.Include(g => g.Developer)
