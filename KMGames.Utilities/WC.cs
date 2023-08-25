@@ -11,5 +11,7 @@ namespace KMGames.Utilities
         public const string GameImagesFolder = "~/Content/Images/Games/";
 
         public const string GameImageNotAvailable = "~/Content/Images/Games/no_image_available.jpg";
+
+        public const string ImageSeparator = "~/Content/Images/Games/Separator.png";
     }
 }
