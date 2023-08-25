@@ -43,6 +43,10 @@ namespace KMGames.Data
 
         public virtual DbSet<User> Users { get; set; }
 
+        public virtual DbSet<Cart> Carts { get; set; }
+
+        public virtual DbSet<GameInCart> GamesInCarts { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new GameEntityTypeConfiguration());
@@ -56,7 +60,8 @@ namespace KMGames.Data
             modelBuilder.Configurations.Add(new SaleDetailEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new CityEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new UserEntityTypeConfiguration());
-
+            modelBuilder.Configurations.Add(new CartEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new GameInCartEntityTypeConfiguration());
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }

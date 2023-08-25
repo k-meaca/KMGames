@@ -60,7 +60,7 @@
 
                                 @if (User.IsInRole("User"))
                                 {
-                                    <a class="btn btn-outline-success bg-success bg-opacity-10 mt-auto" href="@Url.Action("AddGame", "Cart", new { gameId = item.GameId, category = Model.Filter is null? null : Model.Filter.Name})">
+                                    <a class="btn btn-outline-success bg-success bg-opacity-10 mt-auto" href="@Url.Action("AddGame", "SessionCart", new { gameId = item.GameId, category = Model.Filter is null? null : Model.Filter.Name})">
                                         Add to cart
                                     </a>
                                 }

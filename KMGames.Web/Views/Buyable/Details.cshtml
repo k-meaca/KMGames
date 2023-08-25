@@ -80,7 +80,7 @@
 
                             @if (User.IsInRole("User"))
                             {
-                                using (Html.BeginForm("AddGame", "Cart", FormMethod.Post))
+                                using (Html.BeginForm("AddGame", "SessionCart", FormMethod.Post))
                                 {
                                     @Html.Hidden("gameId", Model.Game.GameId)
                                     @Html.Hidden("category", Model.Filter)

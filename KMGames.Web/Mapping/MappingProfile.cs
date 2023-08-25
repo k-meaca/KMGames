@@ -2,13 +2,13 @@
 using KMGames.Entities.DTOs.Category;
 using KMGames.Entities.DTOs.City;
 using KMGames.Entities.DTOs.Developer;
-using KMGames.Entities.DTOs.Game;
+using KMGames.Entities.DTOs.GameDTO;
 using KMGames.Entities.DTOs.PlayerType;
 using KMGames.Entities.DTOs.Sale;
 using KMGames.Entities.DTOs.User;
 using KMGames.Entities.Entities;
-using KMGames.Web.Models.Cart;
-using KMGames.Web.ViewModel.Cart;
+using KMGames.Web.Models.SessionCart;
+using KMGames.Web.ViewModel.SessionCart;
 using KMGames.Web.ViewModel.Categories;
 using KMGames.Web.ViewModel.Cities;
 using KMGames.Web.ViewModel.Country;
@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using KMGames.Entities.DTOs.Cart;
 
 namespace KMGames.Web.Mapping
 {
@@ -45,6 +46,10 @@ namespace KMGames.Web.Mapping
 
         //----------MAPS----------//
 
+        private void LoadCartsMap()
+        {
+            CreateMap<CartListDto, SessionCart>();
+        }
 
         private void LoadCategoriesMap()
         {
@@ -129,7 +134,7 @@ namespace KMGames.Web.Mapping
         private void LoadItemsCartMap()
         {
             CreateMap<ItemCart, ItemCartVm>();
-            CreateMap<ItemCart, Game>();
+            CreateMap<ItemCart, Game>().ReverseMap();
         }
     }
 }

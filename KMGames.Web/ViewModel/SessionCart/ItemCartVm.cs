@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace KMGames.Web.ViewModel.Cart
+namespace KMGames.Web.ViewModel.SessionCart
 {
     public class ItemCartVm
     {

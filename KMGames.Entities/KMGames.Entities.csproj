@@ -41,22 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\Cart\CartListDto.cs" />
     <Compile Include="DTOs\Category\CategoryCheckDto.cs" />
     <Compile Include="DTOs\Category\CategoryListDto.cs" />
     <Compile Include="DTOs\City\CityListDto.cs" />
     <Compile Include="DTOs\Developer\DeveloperListDto.cs" />
-    <Compile Include="DTOs\Game\GameListDto.cs" />
+    <Compile Include="DTOs\GameDTO\GameListDto.cs" />
     <Compile Include="DTOs\PlayerType\PlayerTypeCheckDto.cs" />
     <Compile Include="DTOs\PlayerType\PlayerTypeListDto.cs" />
     <Compile Include="DTOs\Sale\CustomerSalesListDto.cs" />
     <Compile Include="DTOs\Sale\SaleListDto.cs" />
     <Compile Include="DTOs\User\UserListDto.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Developer.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GameCategory.cs" />
+    <Compile Include="Entities\GameInCart.cs" />
     <Compile Include="Entities\PlayerGame.cs" />
     <Compile Include="Entities\PlayerType.cs" />
     <Compile Include="Entities\User.cs" />

@@ -32,6 +32,7 @@ namespace KMGames.Entities.Entities
 
         public virtual ICollection<SaleDetail> SalesDetails { get; set; }
 
+        public virtual ICollection<GameInCart> Carts { get; set; } 
 
         public string Image { get; set; }
 
@@ -42,6 +43,7 @@ namespace KMGames.Entities.Entities
             GameCategories = new HashSet<GameCategory>();
             PlayersGame = new HashSet<PlayerGame>();
             SalesDetails = new HashSet<SaleDetail>();
+            Carts = new HashSet<GameInCart>();
         }
 
 

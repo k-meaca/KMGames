@@ -3,48 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace KMGames.Web.Models.Cart
+namespace KMGames.Web.Models.SessionCart
 {
-    public class Cart
+    public class SessionCart
     {
         //----------PROPERTIES----------//
 
-        private List<ItemCart> _items { get; set; }
+        public List<ItemCart> Items { get; set; }
 
         public string LastCategory { get; set; }
 
         //----------CONSTRUCTOR----------//
 
-        public Cart()
+        public SessionCart()
         {
-            _items = new List<ItemCart>();
+            Items = new List<ItemCart>();
         }
 
         //----------METHODS----------//
 
         public int Count()
         {
-            return _items.Count;
+            return Items.Count;
         } 
 
         public void AddGame(ItemCart game)
         {
-            _items.Add(game);
+            Items.Add(game);
         }
 
         public void Clear()
         {
-            _items.Clear();
+            Items.Clear();
         }
 
-        public List<ItemCart> Items()
-        {
-            return _items;
-        }
-
+        
         public void RemoveGame(int id)
         {
-            _items.Remove(_items.First(i => i.GameId == id));
+            Items.Remove(Items.First(i => i.GameId == id));
         }
     }
 }

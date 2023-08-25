@@ -1,4 +1,4 @@
-﻿@model KMGames.Web.ViewModel.Cart.CartVm
+﻿@model KMGames.Web.ViewModel.SessionCart.CartVm
 
 @{
     ViewBag.Title = "Index";
@@ -40,7 +40,7 @@
                                 Remove
                             </a>*@
 
-                        <form action="@Url.Action("RemoveGame","Cart")" id="removeForm">
+                        <form action="@Url.Action("RemoveGame","SessionCart")" id="removeForm">
 
                             @Html.Hidden("gameId",item.GameId)
 
@@ -71,7 +71,7 @@
             Keep Buying
         </a>
 
-        <form action="@Url.Action("PayCart","Cart")" id="payForm" class="w-75">
+        <form action="@Url.Action("PayCart","SessionCart")" id="payForm" class="w-75">
 
             <button class="btn bg-opacity-25 btn-outline-primary col-3" type="submit"
                     onclick="return PayConfirmed('@Model.Items.Sum(g => g.ActualPrice).ToString("C")')">

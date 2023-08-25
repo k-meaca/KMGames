@@ -408,6 +408,9 @@ namespace KMGames.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+
+            Session["cart"] = null;
+
             return RedirectToAction("Index", "Home");
         }
 

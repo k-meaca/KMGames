@@ -33,6 +33,9 @@ namespace KMGames.Data.EntityTypeConfiguration
             HasMany(g => g.SalesDetails).
                 WithRequired(pg => pg.Game).
                 WillCascadeOnDelete(false);
+            HasMany(g => g.Carts)
+                .WithRequired(gc => gc.Game)
+                .WillCascadeOnDelete(false);
 
             HasIndex(g => g.Title).IsUnique().HasName("IX_Games_Title");
         }

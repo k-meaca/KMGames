@@ -89,6 +89,9 @@ namespace KMGames.Web.App_Start
             kernel.Bind<ISaleService>().To<SaleService>().InRequestScope();
             kernel.Bind<ISaleRepository>().To<SaleRepository>().InRequestScope();
 
+            kernel.Bind<ICartService>().To<CartService>().InRequestScope();
+            kernel.Bind<ICartRepository>().To<CartRepository>().InRequestScope();
+
             kernel.Bind<KmGamesDBContext>().ToSelf().InRequestScope();
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace KMGames.Web.Models.Cart
+namespace KMGames.Web.Models.SessionCart
 {
     public class ItemCart
     {
@@ -21,6 +21,8 @@ namespace KMGames.Web.Models.Cart
         public string Description { get; set; }
 
         //----------CONSTRUCTOR----------//
+
+        public ItemCart() { }
 
         public ItemCart(Game game)
         {

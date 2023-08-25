@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KMGames.Entities.DTOs.Game
+namespace KMGames.Entities.DTOs.GameDTO
 {
     public class GameListDto
     {

@@ -66,9 +66,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICartService.cs" />
     <Compile Include="Interfaces\ICityService.cs" />
     <Compile Include="Interfaces\IPLayerTypeService.cs" />
     <Compile Include="Interfaces\ISaleService.cs" />
+    <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\CountryService.cs" />

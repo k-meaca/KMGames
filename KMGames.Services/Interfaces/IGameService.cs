@@ -1,5 +1,5 @@
 ﻿using KMGames.Entities;
-using KMGames.Entities.DTOs.Game;
+using KMGames.Entities.DTOs.GameDTO;
 using KMGames.Entities.Entities;
 using System;
 using System.Collections.Generic;

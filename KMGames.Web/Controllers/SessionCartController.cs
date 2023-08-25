@@ -2,8 +2,10 @@
 using KMGames.Entities.Entities;
 using KMGames.Services.Interfaces;
 using KMGames.Web.App_Start;
-using KMGames.Web.Models.Cart;
-using KMGames.Web.ViewModel.Cart;
+using KMGames.Web.Models.SessionCart;
+using KMGames.Web.ViewModel.SessionCart;
+using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,43 +14,48 @@ using System.Web.Mvc;
 
 namespace KMGames.Web.Controllers
 {
-    public class CartController : Controller
+    public class SessionCartController : Controller
     {
         //----------PROPERTIES----------//
 
-        private Cart _cart;
+        private SessionCart _cart;
 
         private IGameService _gameService;
         private ISaleService _saleService;
         private IUserService _userService;
+        private ICartService _cartService;
 
         private IMapper _mapper;
 
         //----------CONSTRUCTOR----------/
 
-        public CartController(IGameService gameService, ISaleService saleService, IUserService userService)
+        public SessionCartController(IGameService gameService, ISaleService saleService, IUserService userService, ICartService cartService)
         {
             _gameService = gameService;
             _saleService = saleService;
             _userService = userService;
+            _cartService = cartService;
 
             _mapper = AutoMapperConfig.Mapper;
         }
 
         //----------METHODS----------//
 
-        private Cart GetCart()
+        private SessionCart GetCart()
         {
-            if(_cart != null)
-            {
-                return _cart;
-            }
-
-            _cart = (Cart)Session["cart"];
+            _cart = (SessionCart)Session["cart"];
 
             if(_cart is null)
             {
-                _cart = new Cart();
+                _cart = new SessionCart();
+
+                if (_cartService.HasItems(User.Identity.GetUserId()))
+                {
+                    var cart = _cartService.GetCart(User.Identity.GetUserId());
+
+                    _cart.Items = _mapper.Map<List<ItemCart>>(cart.Items);
+                }
+
                 Session["cart"] = _cart;
             }
 
@@ -66,7 +73,7 @@ namespace KMGames.Web.Controllers
                 return View("EmptyCart");
             }
 
-            List<ItemCartVm> items = _mapper.Map<List<ItemCartVm>>(_cart.Items());
+            List<ItemCartVm> items = _mapper.Map<List<ItemCartVm>>(_cart.Items);
 
             CartVm cart = new CartVm()
             {
@@ -77,7 +84,7 @@ namespace KMGames.Web.Controllers
             return View(cart);
         }
 
-        // GET: Cart
+        // GET: SessionCart
         public ActionResult ShowCart()
         {
             _cart = GetCart();
@@ -107,6 +114,15 @@ namespace KMGames.Web.Controllers
 
             _cart.LastCategory = category;
 
+            if (_cart.Count() == 1)
+            {
+                _cartService.CreateCart(User.Identity.GetUserId(), game);
+            }
+            else
+            {
+                _cartService.AddGameToCart(User.Identity.GetUserId(), game);
+            }
+
             Session["cart"] = _cart; 
 
             return RedirectToAction("Index");
@@ -125,6 +141,15 @@ namespace KMGames.Web.Controllers
 
             Session["cart"] = _cart;
 
+            if(_cart.Count() == 0)
+            {
+                _cartService.RemoveCartFrom(User.Identity.GetUserId());
+            }
+            else
+            {
+                _cartService.RemoveGameFromCart(User.Identity.GetUserId(), gameId.Value);
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -134,13 +159,15 @@ namespace KMGames.Web.Controllers
 
             var user = _userService.GetUserByEmail(User.Identity.Name);
 
-            var games = _mapper.Map<List<Game>>(_cart.Items());
+            var games = _mapper.Map<List<Game>>(_cart.Items);
 
             try
             {
                 _saleService.PayGames(user, games);
 
                 _cart.Clear();
+
+                _cartService.ClearCartFor(User.Identity.GetUserId());
 
                 Session["cart"] = _cart;
 

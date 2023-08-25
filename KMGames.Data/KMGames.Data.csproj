@@ -74,17 +74,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityTypeConfiguration\CartEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\CategoryEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\CityEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\CountryEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\DeveloperEntityTypeconfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\GameCategoryEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\GameEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\GameInCartEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\PlayerGameEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\PlayerTypeEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\SaleDetailEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\SaleEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\UserEntityTypeConfiguration.cs" />
+    <Compile Include="Interfaces\ICartRepository.cs" />
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\ICityRepository.cs" />
     <Compile Include="Interfaces\ICountryRepository.cs" />
@@ -235,8 +238,13 @@
     <Compile Include="Migrations\202308181822453_ModifyUserProperties5.designer.cs">
       <DependentUpon>202308181822453_ModifyUserProperties5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202308251238504_CreateCartsTableWithRelationshipWithGames.cs" />
+    <Compile Include="Migrations\202308251238504_CreateCartsTableWithRelationshipWithGames.designer.cs">
+      <DependentUpon>202308251238504_CreateCartsTableWithRelationshipWithGames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
@@ -356,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202308181822453_ModifyUserProperties5.resx">
       <DependentUpon>202308181822453_ModifyUserProperties5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308251238504_CreateCartsTableWithRelationshipWithGames.resx">
+      <DependentUpon>202308251238504_CreateCartsTableWithRelationshipWithGames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
